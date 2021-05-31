@@ -15,6 +15,42 @@ public class Cart {
     public Cart() {
     }
 
+    //region GET/SET
+
+    public List<Drink> getDrinkCart() {
+        return drinkCart;
+    }
+
+    public void setDrinkCart(List<Drink> drinkCart) {
+        this.drinkCart = drinkCart;
+    }
+
+    public List<Integer> getDrinkAmount() {
+        return drinkAmount;
+    }
+
+    public void setDrinkAmount(List<Integer> drinkAmount) {
+        this.drinkAmount = drinkAmount;
+    }
+
+    public List<Food> getFoodCart() {
+        return foodCart;
+    }
+
+    public void setFoodCart(List<Food> foodCart) {
+        this.foodCart = foodCart;
+    }
+
+    public List<Integer> getFoodAmount() {
+        return foodAmount;
+    }
+
+    public void setFoodAmount(List<Integer> foodAmount) {
+        this.foodAmount = foodAmount;
+    }
+
+    //endregion
+
     @Override
     public String toString() {
         return  "-------------------------------------" +

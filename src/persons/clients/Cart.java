@@ -81,8 +81,7 @@ public class Cart {
 
     @Override
     public String toString() {
-        return  "-------------------------------------" +
-                "\nDrink: " + drinkCart +
+        return  "\nDrink: " + drinkCart +
                 "\nAmount of: " + drinkAmount +
                 "\n\nFood: " + foodCart +
                 "\nAmount of: " + foodAmount +

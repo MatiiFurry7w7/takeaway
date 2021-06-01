@@ -15,6 +15,7 @@ public class Order {
     public Order() {
         this.id = localID;
         localID += 1;
+        this.date = LocalDate.now();
     }
 
     public Order(Client client, Cart cart) {
@@ -23,6 +24,7 @@ public class Order {
 
         this.client = client;
         this.cart = cart;
+        this.date = LocalDate.now();
     }
 
     //region GET/SET
@@ -56,10 +58,9 @@ public class Order {
     @Override
     public String toString() {
         return "ORDER: #" + this.id +
-                "\nClient: " + this.client.getId() + this.client.getName() +
-                "\nCart: " + this.cart +
+                "\nClient ID: " + this.client.getId() +
+                "\nName: " + this.client.getName() +
                 "\nDate: " + this.date +
-                "\n----------------------------------------" +
-                "\nTOTAL  =  " + this.cart.calculateTotal() + "$";
+                "\n\n\t\t<--  CART  -->" + this.cart + "$";
     }
 }

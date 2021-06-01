@@ -1,12 +1,15 @@
 import persons.Person;
+import persons.clients.Client;
 import persons.clients.Order;
 import products.drinks.Drink;
 import products.food.Food;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class TakeAway {
+    static Scanner scanner = new Scanner(System.in);
     private List<Person> persons = new ArrayList<>();
     private HashMap<Integer, Food> foods = new HashMap<>();
     private HashMap<Integer, Drink> drinks = new HashMap<>();
@@ -14,7 +17,7 @@ public class TakeAway {
 
     public TakeAway() {
     }
-    
+
     public TakeAway(List<Person> persons, HashMap<Integer, Food> foods, HashMap<Integer, Drink> drinks, List<Order> orders) {
         this.persons = persons;
         this.foods = foods;
@@ -53,6 +56,40 @@ public class TakeAway {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-    //endregion
+    //endregion+
+
+    ///
+    public Client makeClient(){
+        Client aux = new Client();
+
+        System.out.println("Input name: ");
+        aux.setName(scanner.next());
+        scanner.reset();
+
+        System.out.println("Input phone: ");
+        aux.setPhone(scanner.next());
+        scanner.reset();
+
+        System.out.println("Input email: ");
+        aux.setPhone(scanner.next());
+        scanner.reset();
+
+        System.out.println("Input address: ");
+        aux.setAddress(scanner.next());
+        scanner.reset();
+
+        System.out.println("Is a premium client?");
+        aux.setPremium(scanner.nextBoolean());
+        scanner.reset();
+
+        for (Person eachClient : persons) {
+            if(((Client) eachClient).getEmail() == aux.getEmail() && ((Client)eachClient).getPhone() == aux.getPhone()){
+                System.out.println("\nThat client is already signed!");
+                aux = null;
+            }
+        }
+        return aux;
+    }
+
 
 }

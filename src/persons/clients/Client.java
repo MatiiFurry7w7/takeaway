@@ -16,12 +16,13 @@ public class Client extends Person {
     private List<Order> orders = new ArrayList();
 
     public Client() {
+        super.setActive(true);
         super.setRegisteredDate(LocalDate.now());
         newID();
     }
 
-    public Client(boolean active, String name, String phone, String email, String address, boolean premium) {
-        super.setActive(active);
+    public Client(String name, String phone, String email, String address, boolean premium) {
+        super.setActive(true);
         super.setName(name);
         super.setPhone(phone);
         super.setEmail(email);
@@ -47,7 +48,6 @@ public class Client extends Person {
     }
     //endregion
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,7 +56,7 @@ public class Client extends Person {
         Client client = (Client) o;
 
         return super.getPhone() == client.getPhone() &&
-                super.getAddress() == client.getAddress();
+                super.getEmail() == client.getEmail();
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Client extends Person {
         int result = 1;
 
         result = prime + result * Integer.valueOf(super.getPhone());
-        result = prime + result * Integer.valueOf(super.getAddress());
+        result = prime + result * Integer.valueOf(super.getEmail());
         return result;
     }
 

@@ -11,20 +11,18 @@ public class Order {
     private Client client;
     private Cart cart;
     private LocalDate date;
-    private float totalPaid;
 
     public Order() {
         this.id = localID;
         localID += 1;
     }
 
-    public Order(Client client, Cart cart, float totalPaid) {
+    public Order(Client client, Cart cart) {
         this.id = localID;
         localID += 1;
 
         this.client = client;
         this.cart = cart;
-        this.totalPaid = totalPaid;
     }
 
     //region GET/SET
@@ -53,14 +51,6 @@ public class Order {
         this.date = date;
     }
 
-    public float getTotalPaid() {
-        return totalPaid;
-    }
-
-    public void setTotalPaid(float totalPaid) {
-        this.totalPaid = totalPaid;
-    }
-
     //endregion
 
     @Override
@@ -70,6 +60,6 @@ public class Order {
                 "\nCart: " + this.cart +
                 "\nDate: " + this.date +
                 "\n----------------------------------------" +
-                "\nTOTAL  =  " + this.totalPaid + "$";
+                "\nTOTAL  =  " + this.cart.calculateTotal() + "$";
     }
 }

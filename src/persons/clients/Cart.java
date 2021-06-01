@@ -73,19 +73,24 @@ public class Cart {
         float total = 0;
 
         for (Integer i=0; i < drinkCart.size(); i++) {
-            total = drinkCart.get(i).getPrice() * drinkAmount.get(i);
+            total += drinkCart.get(i).getPrice() * drinkAmount.get(i);
         }
 
         return total;
     }
 
+    public void displayCart(){
+        System.out.println('\n');
+        for (Integer i=0; i < drinkCart.size(); i++) {
+            System.out.println(drinkAmount.get(i) + ": " + drinkCart.get(i));
+        }
+        System.out.println("   \t<--  CART  -->\n");
+    }
+
     @Override
     public String toString() {
-        return  "\nDrink: " + drinkCart +
-                "\nAmount of: " + drinkAmount +
-                "\n\nFood: " + foodCart +
-                "\nAmount of: " + foodAmount +
-                "\n-------------------" +
+        displayCart();
+        return  "\n-------------------" +
                 "\nTOTAL: " + calculateTotal() + "$";
     }
 }

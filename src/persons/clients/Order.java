@@ -57,10 +57,9 @@ public class Order {
 
     @Override
     public String toString() {
-        return "ORDER: #" + this.id +
-                "\nClient ID: " + this.client.getId() +
-                "\nName: " + this.client.getName() +
+        return  "ORDER: #" + this.id +
+                "\nClient ID: #" + this.client.getId() +
                 "\nDate: " + this.date +
-                "\n\n\t\t<--  CART  -->" + this.cart + "$";
+                this.cart;
     }
 }

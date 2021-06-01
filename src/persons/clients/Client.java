@@ -22,14 +22,14 @@ public class Client extends Person {
     }
 
     public Client(String name, String phone, String email, String address, boolean premium) {
+        newID();
         super.setActive(true);
+        super.setRegisteredDate(LocalDate.now());
+
         super.setName(name);
         super.setPhone(phone);
         super.setEmail(email);
         super.setAddress(address);
-        super.setRegisteredDate(LocalDate.now());
-        newID();
-
         this.premium = premium;
     }
 
@@ -71,7 +71,7 @@ public class Client extends Person {
 
     @Override
     public void newID() {
-        this.id = localID + 2000;
+        this.id = localID + 1000;
         localID += 1;
     }
 

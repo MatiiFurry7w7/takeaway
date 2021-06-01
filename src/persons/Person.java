@@ -1,8 +1,11 @@
 package persons;
 
+import persons.clients.Client;
+
 import java.time.LocalDate;
 
 public abstract class Person {
+
     private boolean active;
     private String name;
     private String phone;

@@ -49,8 +49,12 @@ public class Alcoholic extends Drink {
         return "Brand: " + super.getBrand() +
                 "\nStock: " + super.getStock() +
                 "\nPrice: " + super.getPrice() +
+                "\nSize: " + super.getSize() +
                 "\nBottling: " + super.getBottling() +
-                "\nFizz: " + super.getFlavor();
+                "\nFizz: " + super.isFizz() +
+                "\nFlavor: " + super.getFlavor() +
+                "\nType: " + this.getType() +
+                "\nStrength: " + this.getAlcoholicStrength();
     };
 
 

@@ -1,6 +1,8 @@
 import persons.Person;
 import persons.clients.Client;
 import persons.clients.Order;
+import persons.employees.Employee;
+import persons.employees.typeEmployeeArea;
 import products.drinks.Drink;
 import products.food.Food;
 import java.util.ArrayList;
@@ -71,19 +73,15 @@ public class TakeAway {
         scanner.reset();
 
         System.out.println("Input email: ");
-        aux.setPhone(scanner.next());
+        aux.setEmail(scanner.next());
         scanner.reset();
 
         System.out.println("Input address: ");
         aux.setAddress(scanner.next());
         scanner.reset();
 
-        System.out.println("Is a premium client?");
-        aux.setPremium(scanner.nextBoolean());
-        scanner.reset();
-
         for (Person eachClient : persons) {
-            if(((Client) eachClient).getEmail() == aux.getEmail() && ((Client)eachClient).getPhone() == aux.getPhone()){
+            if(eachClient.equals(aux)){
                 System.out.println("\nThat client is already signed!");
                 aux = null;
             }
@@ -91,5 +89,53 @@ public class TakeAway {
         return aux;
     }
 
+    public Employee makeEmployee(){
+        Employee aux = new Employee();
 
+        System.out.println("Input name: ");
+        aux.setName(scanner.nextLine());
+        scanner.reset();
+
+        System.out.println("Input phone: ");
+        aux.setPhone(scanner.next());
+        scanner.nextLine();
+        scanner.reset();
+
+        System.out.println("Input email: ");
+        aux.setEmail(scanner.nextLine());
+        scanner.reset();
+
+        System.out.println("Input address: ");
+        aux.setAddress(scanner.nextLine());
+        scanner.reset();
+
+        System.out.println("Input employee area:  1. Delivery2. Inventory3. Kitchen4. Manager5. Call Operator");
+        scanner.reset();
+        int a;
+        do {
+            a= scanner.nextInt();
+            switch(a) {
+                case 1:
+                    aux.setArea(typeEmployeeArea.Delivery); break;
+                case 2:
+                    aux.setArea(typeEmployeeArea.Inventory); break;
+                case 3:
+                    aux.setArea(typeEmployeeArea.Kitchen); break;
+                case 4:
+                    aux.setArea(typeEmployeeArea.Manager); break;
+                case 5:
+                    aux.setArea(typeEmployeeArea.Call_operator); break;
+                default:
+                    System.out.println("Invalid input. Insert a correct input."); break;
+            }
+        }while (a<1 || a>5);
+
+        for (Person eachEmployee : persons) {
+            if(eachEmployee.equals(aux)){
+                System.out.println("\nThat employee is already signed!");
+                aux = null;
+            }
+        }
+     return aux;
+    }
 }

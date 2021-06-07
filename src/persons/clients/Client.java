@@ -13,7 +13,6 @@ public class Client extends Person {
     private int id;
     private boolean premium;
     private int ordersAmount;
-    private List<Order> orders = new ArrayList();
 
     public Client() {
         super.setActive(true);

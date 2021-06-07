@@ -83,7 +83,7 @@ public abstract class Person {
         int result = 1;
 
         result = prime + result * Integer.valueOf(this.getPhone());
-        result = prime + result * Integer.valueOf(this.getEmail()());
+        result = prime + result * Integer.valueOf(this.getEmail());
         return result;
     }
 

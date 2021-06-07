@@ -73,8 +73,8 @@ public abstract class Person {
 
         Client client = (Client) o;
 
-        return this.getPhone() == client.getPhone() &&
-                this.getEmail() == client.getEmail();
+        return this.getPhone().equals(client.getPhone()) &&
+                this.getEmail().equals(client.getEmail());
     }
 
     @Override

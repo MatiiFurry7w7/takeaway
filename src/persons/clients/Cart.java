@@ -53,20 +53,21 @@ public class Cart {
 
     //endregion
 
-    public void addToCart(Object o){
-        if(o instanceof Alcoholic || o instanceof NonAlcoholic)
-        drinkCart.add((Drink) o);
+    public void addToCart(Object o, int amount) {
+
+        if (o instanceof Drink) {
+            if (((Drink) o).getStock() >= amount) {
+                drinkCart.add((Drink) o);
+                drinkAmount.add(amount);
+            }
+            else{
+                System.out.println("Not enough stock of: " + ((Drink) o).getStock() + " left!");
+            }
+        }
         else{
             foodCart.add((Food) o);
+            foodAmount.add(amount);
         }
-    }
-
-    public void addAmountOfCurrentDrink(int amount){
-        drinkAmount.add(amount);
-    }
-
-    public void addAmountOfCurrentFood(int amount){
-        foodAmount.add(amount);
     }
 
     public float calculateTotal(){
@@ -82,7 +83,11 @@ public class Cart {
     public void displayCart(){
         System.out.println('\n');
         for (Integer i=0; i < drinkCart.size(); i++) {
-            System.out.println(drinkAmount.get(i) + ": " + drinkCart.get(i));
+            System.out.println(drinkAmount.get(i) + ": " + drinkCart.get(i).getBrand() +
+                    " " + drinkCart.get(i).getSize() + "L " + drinkCart.get(i).getPrice() + " -$");
+        }
+        for (Integer i=0; i < foodCart.size(); i++) {
+            System.out.println(foodAmount.get(i) + ": " + foodCart.get(i));
         }
         System.out.println("   \t<--  CART  -->\n");
     }

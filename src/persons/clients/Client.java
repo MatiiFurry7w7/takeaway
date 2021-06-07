@@ -21,7 +21,7 @@ public class Client extends Person {
         newID();
     }
 
-    public Client(String name, String phone, String email, String address, boolean premium) {
+    public Client(String name, String phone, String email, String address) {
         newID();
         super.setActive(true);
         super.setRegisteredDate(LocalDate.now());
@@ -30,7 +30,7 @@ public class Client extends Person {
         super.setPhone(phone);
         super.setEmail(email);
         super.setAddress(address);
-        this.premium = premium;
+        this.premium = false;
     }
 
     //region GET/SET

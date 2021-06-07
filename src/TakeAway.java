@@ -6,9 +6,9 @@ import persons.employees.Employee;
 import persons.employees.typeEmployeeArea;
 import products.drinks.*;
 import products.food.Food;
-/*import products.food.WithMeat;
+import products.food.WithMeat;
 import products.food.WithoutMeat;
-import products.food.typeMeat;*/
+import products.food.typeMeat;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -150,7 +150,7 @@ public class TakeAway {
         return aux;
     }
 
-    /*public WithMeat makeFoodWithMeat() {
+    public WithMeat makeFoodWithMeat() {
         WithMeat aux = new WithMeat();
 
         System.out.println("Input name: ");
@@ -199,7 +199,7 @@ public class TakeAway {
         } while (a < 1 || a > 5);
 
         return aux;
-    }*/
+    }
 
     /*falta clase WithoutMeat para hacer la clase*/
 
@@ -414,7 +414,7 @@ public class TakeAway {
         return null;
     }
 
-    /*public Food searchFoodbyName(String name){
+    public Food searchFoodbyName(String name){
         for (Food eachFood : foods){
             if(eachFood.getName() == name){
                 return eachFood;
@@ -422,7 +422,7 @@ public class TakeAway {
         }
         System.out.println("Food not found");
         return null;
-    }*/
+    }
 
     public Drink searchDrinkbyName(String brand){
         for (Drink eachDrink : drinks){

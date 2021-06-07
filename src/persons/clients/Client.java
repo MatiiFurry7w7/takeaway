@@ -49,27 +49,6 @@ public class Client extends Person {
     //endregion
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Client)) return false;
-
-        Client client = (Client) o;
-
-        return super.getPhone() == client.getPhone() &&
-                super.getEmail() == client.getEmail();
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-
-        result = prime + result * Integer.valueOf(super.getPhone());
-        result = prime + result * Integer.valueOf(super.getEmail());
-        return result;
-    }
-
-    @Override
     public void newID() {
         this.id = localID + 1000;
         localID += 1;

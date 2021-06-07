@@ -1,6 +1,6 @@
 package products;
 
-public interface healthyDiscount {
+public interface premiumDiscount {
 
     float percent = 10f;
 

@@ -1,16 +1,18 @@
 package products.drinks;
 
 
-public class NonAlcoholic extends Drink {
+import products.premiumDiscount;
+
+public class NonAlcoholic extends Drink implements premiumDiscount {
 
     private typeNonAlcoholic type;
 
     public NonAlcoholic (){
-
+        super.newID();
     };
 
     public NonAlcoholic (String brand, int stock, float price, float size, String bottling, boolean fizz, String flavor, typeNonAlcoholic type){
-
+        super.newID();
         super.setBrand(brand);
         super.setStock(stock);
         super.setPrice(price);
@@ -36,13 +38,11 @@ public class NonAlcoholic extends Drink {
 
     @Override
     public String toString(){
-        return "Brand: " + super.getBrand() +
-                "\nStock: " + super.getStock() +
-                "\nPrice: " + super.getPrice() +
-                "\nSize: " + super.getSize() +
-                "\nBottling: " + super.getBottling() +
-                "\nFizz: " + super.isFizz() +
-                "\nFlavor: " + super.getFlavor() +
-                "\nType: " + this.getType();
+        return super.toString() + "\nType: " + this.getType();
     };
+
+    @Override
+    public float priceWithDiscount() {
+        return super.getPrice() - ((super.getPrice() * percent) / 100);
+    }
 }

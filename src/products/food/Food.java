@@ -1,6 +1,8 @@
 package products.food;
 
-public abstract class Food {
+import products.Product;
+
+public abstract class Food extends Product {
 
     private String name;
     private float price;
@@ -43,5 +45,12 @@ public abstract class Food {
 
     //endregion
 
-    
+    @Override
+    public String toString (){
+        return "\nID: #" + super.getProductID() +
+                "\nName: " + this.name +
+                "\nPrice: $" + this.price +
+                "\nDescription: " + this.description +
+                "\nThis dish is recommended for: " + this.numberPeopleRecommended + " people";
+    };
 }

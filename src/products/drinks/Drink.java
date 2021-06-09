@@ -1,8 +1,10 @@
 package products.drinks;
 
+import products.Product;
+
 import java.util.Objects;
 
-public abstract class Drink {
+public abstract class Drink extends Product {
     private String brand;
     private int stock;
     private float price;
@@ -86,4 +88,12 @@ public abstract class Drink {
         return Objects.hash(brand, size, bottling, flavor);
     }
 
+    @Override
+    public String toString() {
+        return  "\nID: #" + super.getProductID() +
+                "\nBrand: " + brand  + " " + flavor +
+                "\nIn stock: " + stock + ", price: $" + price +
+                "\nBottling: " + bottling + " " + size + "L" +
+                "\nContain fizz: " + fizz;
+    }
 }

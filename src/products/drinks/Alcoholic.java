@@ -7,12 +7,11 @@ public class Alcoholic extends Drink {
     private float alcoholicStrength;
 
     public Alcoholic(){
-        //falta que martin termine la interface de IDProducto
-
+        super.newID();
     };
 
     public Alcoholic(String brand, int stock, float price, float size, String bottling, boolean fizz, String flavor, typeAlcoholic type, float strength){
-
+        super.newID();
         super.setBrand(brand);
         super.setStock(stock);
         super.setPrice(price);
@@ -46,15 +45,9 @@ public class Alcoholic extends Drink {
 
     @Override
     public String toString(){
-        return "Brand: " + super.getBrand() +
-                "\nStock: " + super.getStock() +
-                "\nPrice: " + super.getPrice() +
-                "\nSize: " + super.getSize() +
-                "\nBottling: " + super.getBottling() +
-                "\nFizz: " + super.isFizz() +
-                "\nFlavor: " + super.getFlavor() +
+        return super.toString() +
                 "\nType: " + this.getType() +
-                "\nStrength: " + this.getAlcoholicStrength();
+                "\nStrength: " + this.getAlcoholicStrength() + "%";
     };
 
 

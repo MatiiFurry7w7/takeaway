@@ -4,5 +4,6 @@ public enum typeAlcoholic {
     Beer,
     Wine,
     Champagne,
-    Liqueur;
+    Liqueur,
+    Other;
 }

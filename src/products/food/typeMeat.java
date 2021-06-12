@@ -5,5 +5,6 @@ public enum typeMeat {
     Beef,
     Fish,
     Pork,
-    Chicken;
+    Chicken,
+    Other;
 }

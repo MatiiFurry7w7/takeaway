@@ -4,5 +4,6 @@ public enum typeNonAlcoholic {
     Water,
     Juice,
     Soda,
-    Flavored_Water;
+    Flavored_Water,
+    Other;
 }

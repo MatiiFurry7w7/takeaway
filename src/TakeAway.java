@@ -67,8 +67,11 @@ public class TakeAway {
     //region "Make" Methods so the instances have a control before made
 
     public Client makeClient() {
+        System.out.println("Making a Client!\n");
+
         Client aux = new Client();
 
+        scanner.reset();
         System.out.println("Input name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
@@ -96,8 +99,11 @@ public class TakeAway {
     }
 
     public Employee makeEmployee() {
+        System.out.println("Making an Employee!\n");
+
         Employee aux = new Employee();
 
+        scanner.reset();
         System.out.println("Input name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
@@ -152,8 +158,11 @@ public class TakeAway {
     }
 
     public WithMeat makeFoodWithMeat() {
+        System.out.println("Making a Food with meat!\n");
+
         WithMeat aux = new WithMeat();
 
+        scanner.reset();
         System.out.println("Input name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
@@ -172,7 +181,7 @@ public class TakeAway {
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input type meat:  1.None \n2.Beef \n3.Fish \n4.Pork \n5.Chicken");
+        System.out.println("Input type meat:  \n1.None \n2.Beef \n3.Fish \n4.Pork \n5.Chicken");
         scanner.reset();
         int a;
         do {
@@ -198,11 +207,16 @@ public class TakeAway {
                     break;
             }
         } while (a < 1 || a > 5);
+        scanner.reset();
+        scanner.nextLine();
 
         return aux;
     }
 
     public WithoutMeat makeFoodWithoutMeat() {
+        System.out.println("Making a Food without meat!\n");
+        scanner.reset();
+
         WithoutMeat aux = new WithoutMeat();
 
         System.out.println("Input name: ");
@@ -231,32 +245,35 @@ public class TakeAway {
     }
 
     public Alcoholic makeAlcoholic() {
+        System.out.println("Making an alcoholic Drink!\n");
+
         Alcoholic aux = new Alcoholic();
 
-        System.out.println("Input brand: ");
+        scanner.reset();
+        System.out.println("Brand: ");
         aux.setBrand(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input stock: ");
+        System.out.println("In stock: ");
         aux.setStock(scanner.nextInt());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input price: ");
+        System.out.println("Price: ");
         aux.setPrice(scanner.nextFloat());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input size: ");
+        System.out.println("Size: ");
         aux.setSize(scanner.nextFloat());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input bottling: ");
+        System.out.println("Type of bottling: ");
         aux.setBottling(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input fizz: 1.True \n 2.False");
+        System.out.println("Contain fizz?:\n1.True \n2.False");
         scanner.reset();
         int optionFizz;
         do {
@@ -275,11 +292,12 @@ public class TakeAway {
             }
         } while (optionFizz < 1 || optionFizz > 2);
 
-        System.out.println("Input flavor: ");
+        scanner.reset(); scanner.nextLine();
+        System.out.println("Flavor: ");
         aux.setFlavor(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input type alcoholic: 1.Beer \n2.Wine \n3.Champagne \n4.Liqueur");
+        System.out.println("Type of alcoholic drink:\n1.Beer\n2.Wine\n3.Champagne\n4.Liqueur\n5.Other");
         scanner.reset();
         int typeAlcoholic;
         do {
@@ -297,13 +315,18 @@ public class TakeAway {
                 case 4:
                     aux.setType(products.drinks.typeAlcoholic.Liqueur);
                     break;
+                case 5:
+                    aux.setType(products.drinks.typeAlcoholic.Other);
+                    break;
                 default:
                     System.out.println("Invalid input. Insert a correct input.");
                     break;
             }
         } while (typeAlcoholic < 1 || typeAlcoholic > 4);
 
-        System.out.println("Input the alcoholic strength: ");
+        scanner.reset(); scanner.nextLine();
+
+        System.out.println("Alcoholic strength (in %): ");
         aux.setAlcoholicStrength(scanner.nextFloat());
         scanner.reset();
 
@@ -317,32 +340,35 @@ public class TakeAway {
     }
 
     public NonAlcoholic makeNonAlcoholic() {
+        System.out.println("Making a non alcoholic Drink!\n");
+
         NonAlcoholic aux = new NonAlcoholic();
 
-        System.out.println("Input brand: ");
+        scanner.reset();
+        System.out.println("Brand: ");
         aux.setBrand(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input stock: ");
+        System.out.println("In stock: ");
         aux.setStock(scanner.nextInt());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input price: ");
+        System.out.println("Price: ");
         aux.setPrice(scanner.nextFloat());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input size: ");
+        System.out.println("Size: ");
         aux.setSize(scanner.nextFloat());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input bottling: ");
+        System.out.println("Type of bottling: ");
         aux.setBottling(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input fizz: 1.True \n 2.False");
+        System.out.println("Contain fizz?:\n1.True \n2.False");
         scanner.reset();
         int optionFizz;
         do {
@@ -361,11 +387,12 @@ public class TakeAway {
             }
         } while (optionFizz < 1 || optionFizz > 2);
 
-        System.out.println("Input flavor: ");
+        scanner.reset(); scanner.nextLine();
+        System.out.println("Flavor: ");
         aux.setFlavor(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input type alcoholic: 1.Water \n2.Juice \n3.Soda \n4.Flavored Water");
+        System.out.println("Type of drink:\n1.Water\n2.Juice\n3.Soda\n4.Flavored Water\n5.Other");
         scanner.reset();
         int typeAlcoholic;
         do {
@@ -383,11 +410,16 @@ public class TakeAway {
                 case 4:
                     aux.setType(typeNonAlcoholic.Flavored_Water);
                     break;
+                case 5:
+                    aux.setType(products.drinks.typeNonAlcoholic.Other);
+                    break;
                 default:
                     System.out.println("Invalid input. Insert a correct input.");
                     break;
             }
         } while (typeAlcoholic < 1 || typeAlcoholic > 4);
+
+        scanner.reset(); scanner.nextLine();
 
         for (Drink eachDrink : drinks) {
             if (eachDrink.equals(aux)) {

@@ -5,10 +5,8 @@ import products.Product;
 public abstract class Food extends Product {
 
     private String name;
-    private float price;
     private String description;
     private int numberPeopleRecommended;
-
 
     //region GET/SET
     public String getName() {
@@ -17,14 +15,6 @@ public abstract class Food extends Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public String getDescription() {
@@ -49,7 +39,7 @@ public abstract class Food extends Product {
     public String toString (){
         return "\nID: #" + super.getProductID() +
                 "\nName: " + this.name +
-                "\nPrice: $" + this.price +
+                "\nPrice: $" + super.getPrice() +
                 "\nDescription: " + this.description +
                 "\nThis dish is recommended for: " + this.numberPeopleRecommended + " people";
     };

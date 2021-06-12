@@ -7,12 +7,10 @@ import java.util.Objects;
 public abstract class Drink extends Product {
     private String brand;
     private int stock;
-    private float price;
     private float size;
     private String bottling;
     private boolean fizz;
     private String flavor;
-
 
     //region GET/SET
 
@@ -30,14 +28,6 @@ public abstract class Drink extends Product {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public float getSize() {
@@ -74,7 +64,6 @@ public abstract class Drink extends Product {
 
     //endregion
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,7 +81,7 @@ public abstract class Drink extends Product {
     public String toString() {
         return  "\nID: #" + super.getProductID() +
                 "\nBrand: " + brand  + " " + flavor +
-                "\nIn stock: " + stock + ", price: $" + price +
+                "\nIn stock: " + stock + ", price: $" + super.getPrice() +
                 "\nBottling: " + bottling + " " + size + "L" +
                 "\nContain fizz: " + fizz;
     }

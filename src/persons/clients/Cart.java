@@ -77,6 +77,9 @@ public class Cart {
             total += drinkCart.get(i).getPrice() * drinkAmount.get(i);
         }
 
+        for (Integer i=0; i < foodCart.size(); i++) {
+            total += foodCart.get(i).getPrice() * foodAmount.get(i);
+        }
         return total;
     }
 
@@ -87,9 +90,10 @@ public class Cart {
                     " " + drinkCart.get(i).getSize() + "L " + drinkCart.get(i).getPrice() + " -$");
         }
         for (Integer i=0; i < foodCart.size(); i++) {
-            System.out.println(foodAmount.get(i) + ": " + foodCart.get(i));
+            System.out.println(foodAmount.get(i) + ": " + foodCart.get(i).getName() +
+                    " " + foodCart.get(i).getDescription() + " " + foodCart.get(i).getPrice() + " -$");
         }
-        System.out.println("   \t<--  CART  -->\n");
+        System.out.println("\t\t\t<--  CART  -->");
     }
 
     @Override

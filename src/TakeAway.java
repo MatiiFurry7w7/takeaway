@@ -64,7 +64,8 @@ public class TakeAway {
     }
     //endregion+
 
-    ///
+    //region "Make" Methods so the instances have a control before made
+
     public Client makeClient() {
         Client aux = new Client();
 
@@ -201,7 +202,33 @@ public class TakeAway {
         return aux;
     }
 
-    /*falta clase WithoutMeat para hacer la clase*/
+    public WithoutMeat makeFoodWithoutMeat() {
+        WithoutMeat aux = new WithoutMeat();
+
+        System.out.println("Input name: ");
+        aux.setName(scanner.nextLine());
+        scanner.reset();
+
+        System.out.println("Input price: ");
+        aux.setPrice(scanner.nextFloat());
+        scanner.nextLine();
+        scanner.reset();
+
+        System.out.println("Input description: ");
+        aux.setDescription(scanner.nextLine());
+        scanner.reset();
+
+        System.out.println("Input number of people recomended: ");
+        aux.setNumberPeopleRecommended(scanner.nextInt());
+        scanner.nextLine();
+        scanner.reset();
+
+        System.out.println("Input Preparation: ");
+        aux.setPreparation(scanner.nextLine());
+        scanner.reset();
+
+        return aux;
+    }
 
     public Alcoholic makeAlcoholic() {
         Alcoholic aux = new Alcoholic();
@@ -380,6 +407,10 @@ public class TakeAway {
         return aux;
     }
 
+    //endregion
+
+    //region "Add" Methods to add the created instances to the takeAway
+
     public void addPersonToStore(Person person) {
         if (person != null) {
             persons.add(person);
@@ -403,6 +434,10 @@ public class TakeAway {
             orders.add(order);
         }
     }
+
+    //endregion
+
+    //region "Search" Methods to search for the instances using a particular attribute of each Class
 
     public Person searchPersonByPhone(String phone){
         for (Person eachPerson : persons) {
@@ -443,6 +478,10 @@ public class TakeAway {
         System.out.println("Orders not found");
         return null;
     }
+
+    //endregion
+
+    //region "Display" Methods to show all the instances in the system
 
     public void displayAllClients(){
         for (Person eachPerson : persons){
@@ -488,6 +527,8 @@ public class TakeAway {
             System.out.println("There were no orders today!");
         }
     }
+
+    //endregion
 
 /*
     Comparator<Drink> compareByTimeOrdered = new Comparator<Drink>() {

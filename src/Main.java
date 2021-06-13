@@ -38,7 +38,7 @@ public class Main {
         //endregion
 
         //region Hardcode-Added new Persons the TakeAway
-        /*
+/*
         //Hardcoded Clients
         elCirculo.addPersonToStore(new Client("Matias Mercado", "123", "mati@gmail.com", "Alberdi 7777"));
         elCirculo.addPersonToStore(new Client("Tobias Lima", "2231111111", "tobu@gmail.com", "Alberdi 7777"));
@@ -50,7 +50,7 @@ public class Main {
         elCirculo.addPersonToStore(new Employee("Ulices Lopez", "2237777777", "ulices@outlook.com", "Yrigoyen 5672", typeEmployeeArea.Inventory));
         elCirculo.addPersonToStore(new Employee("Martin Vasquez", "2239999999", "martin@hotmail.com", "Mitre 3421", typeEmployeeArea.Manager));
         elCirculo.addPersonToStore(new Employee("Marco Martinez", "2235555555", "marco@gmail.com", "Jujuy 2098", typeEmployeeArea.Call_operator));
-        */
+*/
         //endregion
 
         //region WORKING! Make Methods
@@ -95,13 +95,23 @@ public class Main {
 
         //region Files management
         /*
+        //Products files
         elCirculo.saveProductsData();
         elCirculo.loadProductsData();
 
         elCirculo.displayAllFood();
         elCirculo.displayAllDrinks();
+
+        //Persons files
+        elCirculo.savePersonsData();
+        elCirculo.loadPersonsData();
+
+        elCirculo.displayAllClients();
+        elCirculo.displayAllEmployees();
         */
         //endregion
+
+
 
     }
 }

@@ -2,9 +2,11 @@ package persons;
 
 import persons.clients.Client;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
+    private static final long serialVersionUID = 8799656478674716638L;
 
     private boolean active;
     private String name;

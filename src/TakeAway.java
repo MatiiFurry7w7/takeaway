@@ -771,6 +771,24 @@ public class TakeAway {
         }
     }
 
+    public void savePersonsData(){
+        //Saving person data to File
+        try{
+            File auxSerial = new File("src\\data\\personsData.Json");
+            ObjectOutputStream objOutputStream = new ObjectOutputStream(new FileOutputStream(auxSerial));
+
+            for (Person eachPerson : persons)
+                objOutputStream.writeObject(eachPerson);
+
+            objOutputStream.close();
+
+            System.out.println("\nSuccessfully saved persons Data to File!..");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void loadProductsData() {
         //Loading drinks from File
         File auxSerial = new File("src\\data\\drinksData.Json");
@@ -840,6 +858,42 @@ public class TakeAway {
             System.out.println("Successfully loaded Food Data from File!...\n");
         }
 
+    }
+
+    public void loadPersonsData(){
+        //Loading persons from File
+        File auxSerial = new File("src\\data\\personsData.Json");
+
+        if (!(auxSerial).exists()) {
+            System.out.println("\nNo persons data found!\n");
+            return;
+        }
+
+        try{
+            ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(auxSerial));
+
+            Object aux = objInputStream.readObject();
+
+            persons.clear();
+
+            while (aux != null){
+                if (aux instanceof Person) {
+                    addPersonToStore((Person) aux);
+                }
+                aux = objInputStream.readObject();
+            }
+
+        }
+        catch (IOException e){
+            if(e.getMessage() != null)
+                System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("An error has occurred!");
+        }
+        finally {
+            System.out.println("\nSuccessfully loaded persons Data from File!...");
+        }
     }
 
 

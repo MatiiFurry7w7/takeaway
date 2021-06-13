@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import persons.Person;
 import persons.clients.Cart;
 import persons.clients.Client;
@@ -10,6 +11,10 @@ import products.food.WithMeat;
 import products.food.WithoutMeat;
 import products.food.typeMeat;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -716,6 +721,33 @@ public class TakeAway {
     {
         for (int i = 0; i < 50; ++i) System.out.println();
     }
+
+    public void saveProductsData(){
+        Gson productsFile = new Gson();
+
+        String productsJson = productsFile.toJson(this.drinks + " " + this.foods);
+        try{
+            //Open file
+            BufferedWriter fileOut = new BufferedWriter(
+                    new FileWriter(new File("src\\data\\productsData.Json"), true));
+
+            fileOut.write(productsJson);
+            fileOut.close();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /*
+    public void loadProductsData(){
+        Gson productsFile = new Gson();
+
+        String loadProduct = productsFile.fromJson("src\\data\\productsData.Json", this.drinks.getClass());
+
+        System.out.println(loadProduct);
+
+    }
+*/
 
 /*
     Comparator<Drink> compareByTimeOrdered = new Comparator<Drink>() {

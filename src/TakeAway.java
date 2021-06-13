@@ -261,101 +261,107 @@ public class TakeAway {
 
         Alcoholic aux = new Alcoholic();
 
-        scanner.reset();
-        System.out.println("Brand: ");
-        aux.setBrand(scanner.nextLine());
-        scanner.reset();
+        try {
+            scanner.reset();
+            System.out.println("Brand: ");
+            aux.setBrand(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("In stock: ");
-        aux.setStock(scanner.nextInt());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("In stock: ");
+            aux.setStock(scanner.nextInt());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Price: ");
-        aux.setPrice(scanner.nextFloat());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Price: ");
+            aux.setPrice(scanner.nextFloat());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Size: ");
-        aux.setSize(scanner.nextFloat());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Size: ");
+            aux.setSize(scanner.nextFloat());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Type of bottling: ");
-        aux.setBottling(scanner.nextLine());
-        scanner.reset();
+            System.out.println("Type of bottling: ");
+            aux.setBottling(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Contain fizz?:\n1.True \n2.False");
-        scanner.reset();
-        int optionFizz;
-        do {
-            optionFizz = scanner.nextInt();
-            switch (optionFizz) {
-                case 1:
-                    aux.setFizz(true);
-                    break;
-                case 2:
-                    aux.setFizz(false);
-                    break;
+            System.out.println("Contain fizz?:\n1.True \n2.False");
+            scanner.reset();
+            int optionFizz;
+            do {
+                optionFizz = scanner.nextInt();
+                switch (optionFizz) {
+                    case 1:
+                        aux.setFizz(true);
+                        break;
+                    case 2:
+                        aux.setFizz(false);
+                        break;
 
-                default:
-                    System.out.println("Invalid input. Insert a correct input.");
-                    break;
+                    default:
+                        System.out.println("Invalid input. Insert a correct input.");
+                        break;
+                }
+            } while (optionFizz < 1 || optionFizz > 2);
+
+            scanner.reset();
+            scanner.nextLine();
+            System.out.println("Flavor: ");
+            aux.setFlavor(scanner.nextLine());
+            scanner.reset();
+
+            System.out.println("Type of alcoholic drink:\n1.Beer\n2.Wine\n3.Champagne\n4.Liqueur\n5.Other");
+            scanner.reset();
+            int typeAlcoholic;
+            do {
+                typeAlcoholic = scanner.nextInt();
+
+                switch (typeAlcoholic) {
+                    case 1:
+                        aux.setType(products.drinks.typeAlcoholic.Beer);
+                        break;
+                    case 2:
+                        aux.setType(products.drinks.typeAlcoholic.Wine);
+                        break;
+                    case 3:
+                        aux.setType(products.drinks.typeAlcoholic.Champagne);
+                        break;
+                    case 4:
+                        aux.setType(products.drinks.typeAlcoholic.Liqueur);
+                        break;
+                    case 5:
+                        aux.setType(products.drinks.typeAlcoholic.Other);
+                        break;
+
+                    default:
+                        System.out.println("Invalid input. Insert a correct input.");
+                        break;
+                }
+            } while (typeAlcoholic < 1 || typeAlcoholic > 5);
+
+            scanner.reset();
+            scanner.nextLine();
+
+            System.out.println("Alcoholic strength (in %): ");
+            aux.setAlcoholicStrength(scanner.nextFloat());
+            scanner.reset();
+
+            for (Drink eachDrink : drinks) {
+                if (eachDrink.equals(aux)) {
+                    System.out.println("\nThat drink is already added!");
+                    aux = null;
+                }
             }
-        } while (optionFizz < 1 || optionFizz > 2);
 
-        scanner.reset(); scanner.nextLine();
-        System.out.println("Flavor: ");
-        aux.setFlavor(scanner.nextLine());
-        scanner.reset();
+            scanner.reset();
+            scanner.nextLine();
 
-        System.out.println("Type of alcoholic drink:\n1.Beer\n2.Wine\n3.Champagne\n4.Liqueur\n5.Other");
-        scanner.reset();
-        int typeAlcoholic;
-        do {
-            typeAlcoholic = scanner.nextInt();
-
-            switch (typeAlcoholic) {
-                case 1:
-                    aux.setType(products.drinks.typeAlcoholic.Beer);
-                    break;
-                case 2:
-                    aux.setType(products.drinks.typeAlcoholic.Wine);
-                    break;
-                case 3:
-                    aux.setType(products.drinks.typeAlcoholic.Champagne);
-                    break;
-                case 4:
-                    aux.setType(products.drinks.typeAlcoholic.Liqueur);
-                    break;
-                case 5:
-                    aux.setType(products.drinks.typeAlcoholic.Other);
-                    break;
-
-                default:
-                    System.out.println("Invalid input. Insert a correct input.");
-                    break;
-            }
-        } while (typeAlcoholic < 1 || typeAlcoholic > 5);
-
-        scanner.reset(); scanner.nextLine();
-
-        System.out.println("Alcoholic strength (in %): ");
-        aux.setAlcoholicStrength(scanner.nextFloat());
-        scanner.reset();
-
-        for (Drink eachDrink : drinks) {
-            if (eachDrink.equals(aux)) {
-                System.out.println("\nThat drink is already added!");
-                aux = null;
-            }
+            addDrinkToStore(aux);
         }
-
-        scanner.reset();
-        scanner.nextLine();
-
-        addDrinkToStore(aux);
-
+        catch(InputMismatchException e){
+            System.out.println("You have input an invalid value!");
+        }
         return aux;
     }
 

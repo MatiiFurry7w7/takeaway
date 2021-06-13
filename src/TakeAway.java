@@ -11,10 +11,7 @@ import products.food.WithMeat;
 import products.food.WithoutMeat;
 import products.food.typeMeat;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -100,6 +97,9 @@ public class TakeAway {
                 aux = null;
             }
         }
+
+        addPersonToStore(aux);
+
         return aux;
     }
 
@@ -159,6 +159,9 @@ public class TakeAway {
                 aux = null;
             }
         }
+
+        addPersonToStore(aux);
+
         return aux;
     }
 
@@ -186,28 +189,25 @@ public class TakeAway {
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Type of meat: \n1.None\n2.Beef\n3.Fish\n4.Pork\n5.Chicken\n6.Other");
+        System.out.println("Type of meat: \n1.Beef\n2.Fish\n3.Pork\n4.Chicken\n5.Other");
         scanner.reset();
         int a;
         do {
             a = scanner.nextInt();
             switch (a) {
                 case 1:
-                    aux.setMeatType(typeMeat.None);
-                    break;
-                case 2:
                     aux.setMeatType(typeMeat.Beef);
                     break;
-                case 3:
+                case 2:
                     aux.setMeatType(typeMeat.Fish);
                     break;
-                case 4:
+                case 3:
                     aux.setMeatType(typeMeat.Pork);
                     break;
-                case 5:
+                case 4:
                     aux.setMeatType(typeMeat.Chicken);
                     break;
-                case 6:
+                case 5:
                     aux.setMeatType(typeMeat.Other);
                     break;
                 default:
@@ -217,6 +217,8 @@ public class TakeAway {
         } while (a < 1 || a > 6);
         scanner.reset();
         scanner.nextLine();
+
+        addFoodtoStore(aux);
 
         return aux;
     }
@@ -248,6 +250,8 @@ public class TakeAway {
         System.out.println("Preparation: ");
         aux.setPreparation(scanner.nextLine());
         scanner.reset();
+
+        addFoodtoStore(aux);
 
         return aux;
     }
@@ -350,6 +354,8 @@ public class TakeAway {
         scanner.reset();
         scanner.nextLine();
 
+        addDrinkToStore(aux);
+
         return aux;
     }
 
@@ -435,13 +441,15 @@ public class TakeAway {
         } while (typeAlcoholic < 1 || typeAlcoholic > 5);
 
         scanner.reset(); scanner.nextLine();
-
         for (Drink eachDrink : drinks) {
             if (eachDrink.equals(aux)) {
                 System.out.println("\nThat drink is already added!");
                 aux = null;
             }
         }
+
+        addDrinkToStore(aux);
+
         return aux;
     }
 
@@ -549,6 +557,9 @@ public class TakeAway {
         }
 
         cls();
+
+        addOrderToStore(aux);
+
         return aux;
     }
 
@@ -694,10 +705,13 @@ public class TakeAway {
     }
 
     public void displayAllOrders(){
-        System.out.println("\nDisplaying All Orders made...\n");
-        for(Order eachOrder : orders){
-            System.out.println(eachOrder);
+        int count = 0;
+        for (Order eachOrder : orders){
+                System.out.println(eachOrder);
+                count++;
         }
+        if(count == 0)
+            System.out.println("Orders not found");
     }
 
     public void displayTodayOrders(){
@@ -723,31 +737,111 @@ public class TakeAway {
     }
 
     public void saveProductsData(){
-        Gson productsFile = new Gson();
 
-        String productsJson = productsFile.toJson(this.drinks + " " + this.foods);
+        //Saving drinks data to File
         try{
-            //Open file
-            BufferedWriter fileOut = new BufferedWriter(
-                    new FileWriter(new File("src\\data\\productsData.Json"), true));
+            File auxSerial = new File("src\\data\\drinksData.Json");
+            ObjectOutputStream objOutputStream = new ObjectOutputStream(new FileOutputStream(auxSerial));
 
-            fileOut.write(productsJson);
-            fileOut.close();
-        }catch (IOException e){
+            for (Drink eachDrink : drinks)
+                objOutputStream.writeObject(eachDrink);
+
+            objOutputStream.close();
+
+            System.out.println("\nSuccessfully saved Drinks Data to File!..");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        //Saving food data to File
+        try{
+            File auxSerial = new File("src\\data\\foodData.Json");
+            ObjectOutputStream objOutputStream = new ObjectOutputStream(new FileOutputStream(auxSerial));
+
+            for (Food eachFood : foods)
+                objOutputStream.writeObject(eachFood);
+
+            objOutputStream.close();
+
+            System.out.println("Successfully saved Foods Data to File!..");
+        }
+        catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
-    /*
-    public void loadProductsData(){
-        Gson productsFile = new Gson();
+    public void loadProductsData() {
+        //Loading drinks from File
+        File auxSerial = new File("src\\data\\drinksData.Json");
 
-        String loadProduct = productsFile.fromJson("src\\data\\productsData.Json", this.drinks.getClass());
+        if (!(auxSerial).exists()) {
+            System.out.println("\nNo drinks data found!\n");
+            return;
+        }
 
-        System.out.println(loadProduct);
+        try{
+            ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(auxSerial));
+
+            Object aux = objInputStream.readObject();
+
+            drinks.clear();
+
+            while (aux != null){
+                if (aux instanceof Drink) {
+                    addDrinkToStore((Drink) aux);
+                }
+                aux = objInputStream.readObject();
+            }
+
+        }
+        catch (IOException e){
+            if(e.getMessage() != null)
+            System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("An error has occurred!");
+        }
+        finally {
+            System.out.println("\nSuccessfully loaded Drinks Data from File!...");
+        }
+
+        //Loading food from Files
+        auxSerial = new File("src\\data\\foodData.Json");
+
+        if (!(auxSerial).exists()) {
+            System.out.println("\nNo food data found!\n");
+            return;
+        }
+
+        try{
+            ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(auxSerial));
+
+            Object aux = objInputStream.readObject();
+
+            foods.clear();
+
+            while (aux != null){
+                if (aux instanceof Food) {
+                    addFoodtoStore((Food) aux);
+                }
+                aux = objInputStream.readObject();
+            }
+
+        }
+        catch (IOException e){
+            if(e.getMessage() != null)
+                System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("An error has occurred!");
+        }
+        finally {
+            System.out.println("Successfully loaded Food Data from File!...\n");
+        }
 
     }
-*/
+
 
 /*
     Comparator<Drink> compareByTimeOrdered = new Comparator<Drink>() {

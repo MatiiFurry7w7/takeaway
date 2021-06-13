@@ -1,6 +1,9 @@
 package products;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable {
+  private static final long serialVersionUID = 8799656478674716638L;
 
   static int localID = 0;
   int productID;

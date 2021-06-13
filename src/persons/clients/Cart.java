@@ -1,10 +1,12 @@
 package persons.clients;
 
+import products.Product;
 import products.drinks.Alcoholic;
 import products.drinks.Drink;
 import products.drinks.NonAlcoholic;
 import products.food.Food;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,20 +55,23 @@ public class Cart {
 
     //endregion
 
-    public void addToCart(Object o, int amount) {
+    //--- GENERICIDAD ---
+    public <T extends Product> void addToCart(T o, int amount) {
         if(o != null){
             if (o instanceof Drink) {
-                if (((Drink) o).getStock() >= amount) {
-                    ((Drink) o).setStock(((Drink) o).getStock() - amount);
-                    drinkCart.add((Drink) o);
+                Drink aux = (Drink) o;
+                if (aux.getStock() >= amount) {
+                    aux.setStock(aux.getStock() - amount);
+                    drinkCart.add(aux);
                     drinkAmount.add(amount);
                 }
                 else{
-                    System.out.println("Not enough stock of: " + ((Drink) o).getStock() + " left!");
+                    System.out.println("Not enough stock of: " + aux.getStock() + " left!");
                 }
             }
             else{
-                foodCart.add((Food) o);
+                Food aux = (Food) o;
+                foodCart.add(aux);
                 foodAmount.add(amount);
             }
         }

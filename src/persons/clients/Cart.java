@@ -54,20 +54,24 @@ public class Cart {
     //endregion
 
     public void addToCart(Object o, int amount) {
-
-        if (o instanceof Drink) {
-            if (((Drink) o).getStock() >= amount) {
-                drinkCart.add((Drink) o);
-                drinkAmount.add(amount);
+        if(o != null){
+            if (o instanceof Drink) {
+                if (((Drink) o).getStock() >= amount) {
+                    ((Drink) o).setStock(((Drink) o).getStock() - amount);
+                    drinkCart.add((Drink) o);
+                    drinkAmount.add(amount);
+                }
+                else{
+                    System.out.println("Not enough stock of: " + ((Drink) o).getStock() + " left!");
+                }
             }
             else{
-                System.out.println("Not enough stock of: " + ((Drink) o).getStock() + " left!");
+                foodCart.add((Food) o);
+                foodAmount.add(amount);
             }
         }
-        else{
-            foodCart.add((Food) o);
-            foodAmount.add(amount);
-        }
+        else
+            System.out.println("The product doesnt exist!");
     }
 
     public float calculateTotal(){
@@ -84,16 +88,16 @@ public class Cart {
     }
 
     public void displayCart(){
-        System.out.println('\n');
+        System.out.println("---------------------------------------------------------------");
         for (Integer i=0; i < drinkCart.size(); i++) {
             System.out.println(drinkAmount.get(i) + ": " + drinkCart.get(i).getBrand() +
                     " " + drinkCart.get(i).getSize() + "L " + drinkCart.get(i).getPrice() + " -$");
         }
         for (Integer i=0; i < foodCart.size(); i++) {
             System.out.println(foodAmount.get(i) + ": " + foodCart.get(i).getName() +
-                    " " + foodCart.get(i).getDescription() + " " + foodCart.get(i).getPrice() + " -$");
+                    ": " + foodCart.get(i).getDescription() + " " + foodCart.get(i).getPrice() + " -$");
         }
-        System.out.println("\t\t\t<--  CART  -->");
+        System.out.println("\t\t\t\t\t\t<--  CART  -->");
     }
 
     @Override

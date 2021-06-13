@@ -29,6 +29,14 @@ public class Order {
 
     //region GET/SET
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -60,6 +68,7 @@ public class Order {
         return  "ORDER: #" + this.id +
                 "\nClient ID: #" + this.client.getId() +
                 "\nDate: " + this.date +
-                this.cart;
+                this.cart +
+                "\n---------------------------------------------------------------";
     }
 }

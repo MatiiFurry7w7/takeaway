@@ -72,20 +72,20 @@ public class TakeAway {
         Client aux = new Client();
 
         scanner.reset();
-        System.out.println("Input name: ");
+        System.out.println("Name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input phone: ");
+        System.out.println("Phone: ");
         aux.setPhone(scanner.next());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input email: ");
+        System.out.println("Email: ");
         aux.setEmail(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input address: ");
+        System.out.println("Address: ");
         aux.setAddress(scanner.nextLine());
         scanner.reset();
 
@@ -104,24 +104,24 @@ public class TakeAway {
         Employee aux = new Employee();
 
         scanner.reset();
-        System.out.println("Input name: ");
+        System.out.println("Name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input phone: ");
+        System.out.println("Phone: ");
         aux.setPhone(scanner.next());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input email: ");
+        System.out.println("Email: ");
         aux.setEmail(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input address: ");
+        System.out.println("Address: ");
         aux.setAddress(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input employee area:  1. Delivery2. Inventory3. Kitchen4. Manager5. Call Operator");
+        System.out.println("Input employee area: \n1.Delivery\n2.Inventory\n3.Kitchen\n4.Manager\n5.Call Operator");
         scanner.reset();
         int a;
         do {
@@ -163,25 +163,25 @@ public class TakeAway {
         WithMeat aux = new WithMeat();
 
         scanner.reset();
-        System.out.println("Input name: ");
+        System.out.println("Name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input price: ");
+        System.out.println("Price: ");
         aux.setPrice(scanner.nextFloat());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input description: ");
+        System.out.println("Description: ");
         aux.setDescription(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input number of people recomended: ");
+        System.out.println("Number of people recommended per dish: ");
         aux.setNumberPeopleRecommended(scanner.nextInt());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input type meat:  \n1.None \n2.Beef \n3.Fish \n4.Pork \n5.Chicken");
+        System.out.println("Type of meat: \n1.None\n2.Beef\n3.Fish\n4.Pork\n5.Chicken\n6.Other");
         scanner.reset();
         int a;
         do {
@@ -202,11 +202,14 @@ public class TakeAway {
                 case 5:
                     aux.setMeatType(typeMeat.Chicken);
                     break;
+                case 6:
+                    aux.setMeatType(typeMeat.Other);
+                    break;
                 default:
                     System.out.println("Invalid input. Insert a correct input.");
                     break;
             }
-        } while (a < 1 || a > 5);
+        } while (a < 1 || a > 6);
         scanner.reset();
         scanner.nextLine();
 
@@ -219,7 +222,7 @@ public class TakeAway {
 
         WithoutMeat aux = new WithoutMeat();
 
-        System.out.println("Input name: ");
+        System.out.println("Name: ");
         aux.setName(scanner.nextLine());
         scanner.reset();
 
@@ -228,16 +231,16 @@ public class TakeAway {
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input description: ");
+        System.out.println("Description: ");
         aux.setDescription(scanner.nextLine());
         scanner.reset();
 
-        System.out.println("Input number of people recomended: ");
+        System.out.println("Number of people recommended per dish: ");
         aux.setNumberPeopleRecommended(scanner.nextInt());
         scanner.nextLine();
         scanner.reset();
 
-        System.out.println("Input Preparation: ");
+        System.out.println("Preparation: ");
         aux.setPreparation(scanner.nextLine());
         scanner.reset();
 
@@ -302,6 +305,7 @@ public class TakeAway {
         int typeAlcoholic;
         do {
             typeAlcoholic = scanner.nextInt();
+
             switch (typeAlcoholic) {
                 case 1:
                     aux.setType(products.drinks.typeAlcoholic.Beer);
@@ -318,11 +322,12 @@ public class TakeAway {
                 case 5:
                     aux.setType(products.drinks.typeAlcoholic.Other);
                     break;
+
                 default:
                     System.out.println("Invalid input. Insert a correct input.");
                     break;
             }
-        } while (typeAlcoholic < 1 || typeAlcoholic > 4);
+        } while (typeAlcoholic < 1 || typeAlcoholic > 5);
 
         scanner.reset(); scanner.nextLine();
 
@@ -336,11 +341,16 @@ public class TakeAway {
                 aux = null;
             }
         }
+
+        scanner.reset();
+        scanner.nextLine();
+
         return aux;
     }
 
     public NonAlcoholic makeNonAlcoholic() {
         System.out.println("Making a non alcoholic Drink!\n");
+        scanner.reset();
 
         NonAlcoholic aux = new NonAlcoholic();
 
@@ -417,7 +427,7 @@ public class TakeAway {
                     System.out.println("Invalid input. Insert a correct input.");
                     break;
             }
-        } while (typeAlcoholic < 1 || typeAlcoholic > 4);
+        } while (typeAlcoholic < 1 || typeAlcoholic > 5);
 
         scanner.reset(); scanner.nextLine();
 
@@ -430,12 +440,110 @@ public class TakeAway {
         return aux;
     }
 
-    public Order makeOrder(Client client, Cart cart) {
+    public Order makeOrder() {
+        System.out.println("Making New Order!\n");
         Order aux = new Order();
-        aux.setClient(client);
-        aux.setCart(cart);
-        aux.setDate(LocalDate.now());
+        Client auxClient = new Client();
+        Cart auxCart = new Cart();
 
+        Scanner scanner = new Scanner(System.in);
+        String op = "";
+
+        while(!op.equals("Cancel")) {
+
+            System.out.println("Input the Client´s phone to search for it: ");
+            auxClient = searchClientByPhone(scanner.next()); scanner.reset();
+
+            //"While" statement to find the Client to add to the Order
+            while(auxClient == null && !op.equals("Cancel")) {
+
+                System.out.println("Continue? Write: 'Cancel' if no, Anything else if you continue");
+                op = scanner.next(); scanner.reset();
+
+                if(!op.equals("Cancel")){
+                    System.out.println("Input the Client´s phone to search for it: ");
+                    auxClient = searchClientByPhone(scanner.next()); scanner.reset();
+                }
+                else
+                    aux = null;
+            }
+
+            //"do While" statement to fill the Cart
+            if(!op.equals("Cancel")) {
+                do {
+                    aux.setClient(auxClient);
+                    int auxID;
+                    int auxAmount;
+
+                    //Add Food
+                    do {
+                        displayAllFood();
+
+                        System.out.println("\nChoose the food writing the ID: ");
+                        auxID = scanner.nextInt();
+                        scanner.reset();
+
+                        System.out.println("\nHow many units of this dish you want?: ");
+                        auxAmount = scanner.nextInt();
+                        scanner.reset();
+
+                        auxCart.addToCart(searchFoodbyID(auxID), auxAmount);
+
+                        System.out.println(auxCart);
+
+                        System.out.println("\nAdd more food? Input 1: yes, 2: no");
+                        op = scanner.next();
+                        scanner.reset();
+                        cls();
+                    }while(!op.equals("2"));
+
+                    //Add Drinks
+                    do {
+                        displayAllDrinks();
+
+                        System.out.println("\nChoose the drink writing the ID: ");
+                        auxID = scanner.nextInt();
+                        scanner.reset();
+
+                        System.out.println("\nHow many units of this drink you want?: ");
+                        auxAmount = scanner.nextInt();
+                        scanner.reset();
+
+                        cls();
+                        auxCart.addToCart(searchDrinkbyID(auxID), auxAmount);
+
+                        System.out.println(auxCart);
+
+                        System.out.println("\nAdd more drink? Input 1: yes, 2: no");
+                        op = scanner.next();
+                        scanner.reset();
+                        cls();
+
+                    }while(!op.equals("2"));
+
+                } while (aux == null);
+            }
+
+            //"While" statement to confirm Cart and Client
+            while(!op.equals("Cancel")){
+
+                //Set the auxCart to the final Cart
+                aux.setCart(auxCart);
+
+                //Set actual date to the Order
+                aux.setDate(LocalDate.now());
+
+                //Set +1 to the Client order´s amount
+                auxClient.setOrdersAmount(auxClient.getOrdersAmount() + 1);
+
+                if(aux.getCart().calculateTotal() < 1){
+                    aux = null;
+                }
+                op = "Cancel";
+            }
+        }
+
+        cls();
         return aux;
     }
 
@@ -471,29 +579,46 @@ public class TakeAway {
 
     //region "Search" Methods to search for the instances using a particular attribute of each Class
 
-    public Person searchPersonByPhone(String phone){
+    public Client searchClientByPhone(String phone){
         for (Person eachPerson : persons) {
-            if (eachPerson.getPhone() == phone) {
-                return eachPerson;
+            if (eachPerson instanceof Client) {
+                if (eachPerson.getPhone().equals(phone)) {
+                    Client aux = (Client) eachPerson;
+                    return aux;
+                }
             }
         }
-        System.out.println("Client not found");
+
+        System.out.println("Client not found!");
         return null;
     }
 
-    public Food searchFoodbyName(String name){
+    public Employee searchEmployeeByPhone(String phone){
+        for (Person eachPerson : persons) {
+            if (eachPerson instanceof Employee) {
+                if (eachPerson.getPhone().equals(phone)) {
+                    return (Employee) eachPerson;
+                }
+            }
+        }
+
+        System.out.println("Employee not found!");
+        return null;
+    }
+
+    public Food searchFoodbyID(int ID){
         for (Food eachFood : foods){
-            if(eachFood.getName() == name){
+            if(eachFood.getProductID() == ID){
                 return eachFood;
             }
         }
-        System.out.println("Food not found");
+        System.out.println("Food not found!");
         return null;
     }
 
-    public Drink searchDrinkbyName(String brand){
+    public Drink searchDrinkbyID(int ID){
         for (Drink eachDrink : drinks){
-            if(eachDrink.getBrand() == brand){
+            if(eachDrink.getProductID() == ID){
                 return eachDrink;
             }
         }
@@ -501,9 +626,9 @@ public class TakeAway {
         return null;
     }
 
-    public Order searchOrderbyName(Client client){
+    public Order searchOrderbyClientAndOrderID(Client client, int orderID){
         for (Order eachOrder : orders){
-            if(eachOrder.getClient() == client){
+            if(eachOrder.getClient() == client && eachOrder.getId() == orderID){
                 return eachOrder;
             }
         }
@@ -516,6 +641,7 @@ public class TakeAway {
     //region "Display" Methods to show all the instances in the system
 
     public void displayAllClients(){
+        System.out.println("Displaying Clients...");
         for (Person eachPerson : persons){
             if(eachPerson instanceof Client){
                 System.out.println((Client)eachPerson);
@@ -524,6 +650,7 @@ public class TakeAway {
     }
 
     public void displayAllEmployees(){
+        System.out.println("Displaying Employees...");
         for(Person eachPerson : persons){
             if(eachPerson instanceof Employee){
                 System.out.println((Employee)eachPerson);
@@ -532,6 +659,7 @@ public class TakeAway {
     }
 
     public void displayAllFood(){
+        System.out.println("Displaying Food Menu...\n");
         for(Food eachFood : foods){
             if(eachFood instanceof Food){
                 System.out.println(eachFood);
@@ -540,6 +668,7 @@ public class TakeAway {
     }
 
     public void displayAllDrinks(){
+        System.out.println("Displaying Drinks menu...");
         for(Drink eachDrink : drinks){
             if(eachDrink instanceof Drink){
                 System.out.println(eachDrink);
@@ -547,20 +676,46 @@ public class TakeAway {
         }
     }
 
-    public void displayTodayOrders(){
+    public void displayAllOrders(Client client){
         int count = 0;
-        for(Order eachOrder : orders){
-            if(eachOrder.getDate() == LocalDate.now()){
-                System.out.println("\n"+eachOrder);
+        for (Order eachOrder : orders){
+            if(eachOrder.getClient() == client){
+                System.out.println(eachOrder);
                 count++;
             }
         }
-        if(count==0){
+        if(count == 0)
+            System.out.println("Orders not found");
+    }
+
+    public void displayAllOrders(){
+        System.out.println("\nDisplaying All Orders made...\n");
+        for(Order eachOrder : orders){
+            System.out.println(eachOrder);
+        }
+    }
+
+    public void displayTodayOrders(){
+        int count = 0;
+        System.out.println("Today orders!\n");
+
+        for(Order eachOrder : orders){
+            if(eachOrder.getDate().equals(LocalDate.now())){
+                System.out.println("\n" + eachOrder);
+                count += 1;
+            }
+        }
+        if(count == 0){
             System.out.println("There were no orders today!");
         }
     }
 
     //endregion
+
+    public static void cls()
+    {
+        for (int i = 0; i < 50; ++i) System.out.println();
+    }
 
 /*
     Comparator<Drink> compareByTimeOrdered = new Comparator<Drink>() {

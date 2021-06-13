@@ -45,6 +45,19 @@ public class Client extends Person {
     public void setPremium(boolean premium) {
         this.premium = premium;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getOrdersAmount() {
+        return ordersAmount;
+    }
+
+    public void setOrdersAmount(int ordersAmount) {
+        this.ordersAmount = ordersAmount;
+    }
+
     //endregion
 
     @Override
@@ -55,8 +68,7 @@ public class Client extends Person {
 
     @Override
     public String toString() {
-        return
-                "ID: " + id +
+        return          "\nID: #" + id +
                         "\nName: " + super.getName() +
                         "\nPhone: " + super.getPhone() +
                         "\nE-mail: " + super.getEmail() +

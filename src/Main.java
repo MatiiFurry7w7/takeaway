@@ -582,7 +582,33 @@ public class Main {
                                             break;
                                             //endregion
                                         case 3:           //region Display all Food
-                                            elCirculo.displayAllFood();
+
+                                            System.out.println("\nDisplay: 1.All food | 2.Available Food | 3.Not available food | 4.Cancel");
+
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                option.reset();
+                                                subOp = 0;
+                                            }
+
+                                            switch (subOp){
+                                                case 1:
+                                                    elCirculo.displayAllFood();
+                                                    break;
+                                                case 2:
+                                                    elCirculo.displayAllFood(true);
+                                                    break;
+                                                case 3:
+                                                    elCirculo.displayAllFood(false);
+                                                    break;
+                                            }
+                                            option.reset(); option.nextLine();
                                             pressEnterKeyToContinue();
                                             break;
                                             //endregion
@@ -606,6 +632,51 @@ public class Main {
                                                 cls();
                                                 elCirculo.editProductPrice(auxF);
                                                 System.out.println("$"+auxF.getPrice());
+                                            }
+                                            option.reset();
+                                            pressEnterKeyToContinue();
+                                            break;
+                                        //endregion
+                                        case 5:           //region Edit Food Availability
+                                            elCirculo.displayAllFood();
+                                            System.out.println("\nInput the ID to search the Food: ");
+                                            Food auxFo = null;
+
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                                auxFo = elCirculo.searchFoodbyID(subOp);
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                option.reset(); option.nextLine();
+                                            }
+
+                                            if(auxFo != null){
+                                                cls();
+                                                System.out.println(auxFo);
+                                                System.out.println("\nSet to: 1.Available | 2.Unavailable | Other.Cancel");
+
+                                                try {
+                                                    option.reset();
+                                                    subOp = option.nextInt();
+                                                    option.reset();
+                                                }
+                                                catch(InputMismatchException e){
+                                                    cls();
+                                                    System.out.println("You must enter a valid option number!");
+                                                    option.reset(); option.nextLine();
+                                                }
+
+                                                if(subOp == 1){
+                                                    auxFo.setActive(true);
+                                                }
+                                                if(subOp == 2){
+                                                    auxFo.setActive(false);
+                                                }
+                                                System.out.println(auxFo.isActive());
                                             }
                                             option.reset();
                                             pressEnterKeyToContinue();
@@ -813,6 +884,7 @@ public class Main {
                         "\n2_ Search Food" +
                         "\n3_ Display Food" +
                         "\n4_ Edit Food Price" +
+                        "\n5_ Edit Food Availability" +
                         "\n\n9_ Go Back");
     }
 

@@ -500,7 +500,7 @@ public class TakeAway {
 
                     //Add Food
                     do {
-                        displayAllFood();
+                        displayAllFood(true);
 
                         System.out.println("\nChoose the food writing the ID: ");
                         auxID = scanner.nextInt();
@@ -510,13 +510,19 @@ public class TakeAway {
                         auxAmount = scanner.nextInt();
                         scanner.reset();
 
+                        if(searchFoodbyID(auxID).isActive() == true)
                         auxCart.addToCart(searchFoodbyID(auxID), auxAmount);
+                        else
+                            System.out.println("\nFood not available!");
 
                         System.out.println(auxCart);
 
-                        System.out.println("\nAdd more food? Input 1: yes, 2: no");
-                        op = scanner.next();
-                        scanner.reset();
+                        do {
+                            System.out.println("\nAdd more food? Input 1:yes | 2:no");
+                            op = scanner.next();
+                            scanner.reset();
+                        }while(!op.equals("1") && !op.equals("2"));
+
                         cls();
                     }while(!op.equals("2"));
 
@@ -537,9 +543,12 @@ public class TakeAway {
 
                         System.out.println(auxCart);
 
-                        System.out.println("\nAdd more drink? Input 1: yes, 2: no");
-                        op = scanner.next();
-                        scanner.reset();
+                        do {
+                            System.out.println("\nAdd more drink? Input 1:yes | 2:no");
+                            op = scanner.next();
+                            scanner.reset();
+                        }while(!op.equals("1") && !op.equals("2"));
+
                         cls();
 
                     }while(!op.equals("2"));
@@ -556,21 +565,42 @@ public class TakeAway {
                 //Set actual date to the Order
                 aux.setDate(LocalDate.now());
 
-                //Set +1 to the Client order´s amount
-                auxClient.setOrdersAmount(auxClient.getOrdersAmount() + 1);
-                if(auxClient.getOrdersAmount() == 10){
-                    auxClient.setPremium(true);
-                    System.out.println("This client is now PREMIUM!:\nNow there will be a 10% discount to the Food without Meat and the Drinks without alcohol!");
-                }
-
                 if(aux.getCart().calculateTotal() < 1){
                     aux = null;
                 }
                 op = "Cancel";
             }
         }
-        addOrderToStore(aux);
-        System.out.println("\nOrder made!");
+        int confirm = 2;
+        do{
+            System.out.println("\nConfirm order?: 1.yes | 2.no");
+            try {
+                scanner.reset();
+                confirm = scanner.nextInt();
+                scanner.reset();
+            }
+            catch(InputMismatchException e){
+                cls();
+                System.out.println("You must enter a valid option number!");
+                scanner.reset(); scanner.nextLine();
+            }
+        }while(confirm < 1 && confirm > 2);
+
+        if(confirm == 1){
+            //Set +1 to the Client order´s amount
+            auxClient.setOrdersAmount(auxClient.getOrdersAmount() + 1);
+            if(auxClient.getOrdersAmount() == 10){
+                auxClient.setPremium(true);
+                System.out.println("This client is now PREMIUM!:\nNow there will be a 10% discount to the Food without Meat and the Drinks without alcohol!");
+            }
+            addOrderToStore(aux);
+            System.out.println("\nOrder made!");
+        }
+        else{
+            aux = null;
+            System.out.println("\nOrder Cancelled!");
+        }
+
 
         return aux;
     }
@@ -689,18 +719,23 @@ public class TakeAway {
     public void displayAllFood(){
         System.out.println("Displaying Food Menu...\n");
         for(Food eachFood : foods){
-            if(eachFood instanceof Food){
                 System.out.println(eachFood);
-            }
+        }
+    }
+
+    public void displayAllFood(boolean available){
+        System.out.println("Displaying Food Menu... If : " + available);
+
+        for(Food eachFood : foods){
+            if(eachFood.isActive() == available)
+                System.out.println(eachFood);
         }
     }
 
     public void displayAllDrinks(){
         System.out.println("Displaying Drinks menu...");
         for(Drink eachDrink : drinks){
-            if(eachDrink instanceof Drink){
                 System.out.println(eachDrink);
-            }
         }
     }
 

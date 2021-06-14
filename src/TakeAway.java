@@ -796,10 +796,17 @@ public class TakeAway {
     //region "Edit" Methods to edit each instance in the system
     public void editClient(Client aux) {
         int op = 0;
-        System.out.println("\nWhat do you want to edit? 1. Name 2. Phone 3. Email 4. Address");
-        scanner.reset();
-        do {
-            op = scanner.nextInt(); scanner.reset(); scanner.nextLine();
+        System.out.println("\nWhat do you want to edit? 1.Name 2.Phone 3.Email 4.Address");
+        try {
+            scanner.reset();
+            op = scanner.nextInt();
+            scanner.reset();
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset(); scanner.nextLine();
+        }
             switch (op) {
                 case 1:
                     System.out.println("Input new name: ");
@@ -825,11 +832,11 @@ public class TakeAway {
                 default:
                     System.out.println("Insert a valid number!");
             }
-        } while (op < 1 || op > 4);
     }
+
     public void editEmployee(Employee aux) {
         int op = 0;
-        System.out.println("\nWhat do you want to edit? 1.Name 2.Phone 3.Email 4.Address");
+        System.out.println("\nWhat do you want to edit? 1.Name 2.Phone 3.Email 4.Address 5.Area");
         try {
             scanner.reset();
             op = scanner.nextInt();
@@ -862,8 +869,41 @@ public class TakeAway {
                 aux.setAddress(scanner.next());
                 scanner.reset(); scanner.nextLine();
                 break;
+            case 5:
+                System.out.println("Input the new area: 1.Delivery 2.Inventory 3.Kitchen 4.Manager 5.Call Operator");
+                try {
+                    scanner.reset();
+                    op = scanner.nextInt();
+                    scanner.reset();
+                }
+                catch(InputMismatchException e){
+                    cls();
+                    System.out.println("You must enter a valid option number!");
+                    scanner.reset(); scanner.nextLine();
+                }
+                switch (op) {
+                    case 1:
+                        aux.setArea(typeEmployeeArea.Delivery);
+                        break;
+                    case 2:
+                        aux.setArea(typeEmployeeArea.Inventory);
+                        break;
+                    case 3:
+                        aux.setArea(typeEmployeeArea.Kitchen);
+                        break;
+                    case 4:
+                        aux.setArea(typeEmployeeArea.Manager);
+                        break;
+                    case 5:
+                        aux.setArea(typeEmployeeArea.Call_operator);
+                        break;
+                }
+                break;
+            default:
+                System.out.println("Insert a valid number!");
         }
     }
+
     public void editProductPrice(Product product){
 
         System.out.println("\nStock price: $" + product.getPrice() + "\nInput new price: ");

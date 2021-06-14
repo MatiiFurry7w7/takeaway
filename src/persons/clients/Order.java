@@ -2,9 +2,10 @@ package persons.clients;
 
 import persons.clients.Client;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Order {
+public class Order implements Serializable {
     private static int localID = 1;
 
     private int id;

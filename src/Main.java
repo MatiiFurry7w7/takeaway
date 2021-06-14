@@ -30,9 +30,12 @@ public class Main {
         //region TESTS!
 
         //PREMIUM Client test
+        /*
         Client premiumTest = new Client("Matias Mercado", "321", "matii@gmail.com", "Alberdi 7777");
         premiumTest.setOrdersAmount(9);
         elCirculo.addPersonToStore(premiumTest);
+         */
+
         //
 
         //Test date for tests
@@ -48,6 +51,7 @@ public class Main {
         //endregion
 
         //region Hardcode-Added new Persons the TakeAway
+
         /*
         //Hardcoded Clients
         elCirculo.addPersonToStore(new Client("Matias Mercado", "123", "mati@gmail.com", "Alberdi 7777"));
@@ -134,7 +138,7 @@ public class Main {
         //Load data from disk
         elCirculo.loadProductsData();
         elCirculo.loadPersonsData();
-        //elCirculo.loadOrdersData();
+        elCirculo.loadOrdersData();
 
         System.out.println("---------------------------------------------------------------------------\n");
 
@@ -810,7 +814,7 @@ public class Main {
         //Save data to file
         elCirculo.saveProductsData();
         elCirculo.savePersonsData();
-        //elCirculo.saveOrdersData();
+        elCirculo.saveOrdersData();
 
         System.out.println("\n\n\n\t\t\t\t< -- See you later, Have a great day! :) -- >\n\n\n" +
                            "----------------------------------------------------------------------------------");

@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable{
     private List<Drink> drinkCart = new ArrayList<>();
     private List<Integer> drinkAmount = new ArrayList<>();
     private List<Food> foodCart = new ArrayList<>();

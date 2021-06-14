@@ -935,8 +935,22 @@ public class TakeAway {
     }
 
     public void saveOrdersData(){
+        //Saving Order data to File
+        try{
+            File auxSerial = new File("src\\data\\ordersData.Json");
+            ObjectOutputStream objOutputStream = new ObjectOutputStream(new FileOutputStream(auxSerial));
 
-    } //
+            for (Order eachOrder : orders)
+                objOutputStream.writeObject(eachOrder);
+
+            objOutputStream.close();
+
+            System.out.println("Successfully saved orders Data to File!..");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     //Load data..
     public void loadProductsData() {
@@ -1058,7 +1072,43 @@ public class TakeAway {
         }
     }
 
-    public void loadOrdersData(){} //
+    public void loadOrdersData(){
+        //Loading orders from File
+        File auxSerial = new File("src\\data\\ordersData.Json");
+
+        if (!(auxSerial).exists()) {
+            System.out.println("\nNo orders data found!\n");
+            return;
+        }
+
+        try{
+            ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(auxSerial));
+
+            Object aux = objInputStream.readObject();
+
+            orders.clear();
+
+            while (aux != null){
+                Order auxO = new Order();
+                auxO = (Order) aux;
+                addOrderToStore(auxO);
+
+                aux = objInputStream.readObject();
+            }
+
+        }
+        catch (IOException e){
+            if(e.getMessage() != null)
+                System.out.println(e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("An error has occurred!");
+        }
+        finally {
+            System.out.println("Successfully loaded orders Data from File!...");
+        }
+    }
+
     //endregion
 
     public static void cls()

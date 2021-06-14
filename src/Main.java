@@ -134,8 +134,17 @@ public class Main {
             op = 0;
             menu();
 
-            op = option.nextInt();
-            option.reset(); option.nextLine();
+                try {
+                    option.reset();
+                    op = option.nextInt();
+                    option.reset();
+                }
+                catch(InputMismatchException e){
+                    cls();
+                    System.out.println("You must enter a valid option number!");
+                    pressEnterKeyToContinue();
+                    option.reset();  option.nextLine();
+                }
 
             switch (op) {
                 case 1:                   //region CLIENTS SUBMENU
@@ -145,8 +154,17 @@ public class Main {
                         subOp = 0;
                         clientSubMenu();
 
-                        subOp = option.nextInt();
-                        option.reset();
+                        try {
+                            option.reset();
+                            subOp = option.nextInt();
+                            option.reset();
+                        }
+                        catch(InputMismatchException e){
+                            cls();
+                            System.out.println("You must enter a valid option number!");
+                            pressEnterKeyToContinue();
+                            option.reset();
+                        }
 
                         cls();
                         switch (subOp) {
@@ -171,14 +189,18 @@ public class Main {
                                 break;
                                 //endregion
                             case 4:                    //region Edit Client
-                                System.out.println("Input the Client´s phone to edit it: ");
+                                elCirculo.displayAllClients();
+                                System.out.println("\nInput the Client´s phone to edit it: ");
                                 Client auxC = elCirculo.searchClientByPhone(option.next());
+
                                 if(auxC != null){
+                                    cls();
                                     System.out.println(auxC);
-                                    //Edit Form
+                                    elCirculo.editClient(auxC);
+                                    System.out.println(auxC);
                                 }
                                 pressEnterKeyToContinue();
-                                option.reset(); option.nextLine();
+                                option.reset();
                                 break;
                                 //endregion
                             case 5:                    //region Change Active status
@@ -193,8 +215,16 @@ public class Main {
                                 if(auxCl != null){
                                     System.out.println("\nActive status: " + auxCl.isActive() + "\nSet status to 1:active | 2:inactive  | Other:keep original");
 
-                                    subOp = option.nextInt();
-                                    option.reset();
+                                    try {
+                                        option.reset();
+                                        subOp = option.nextInt();
+                                        option.reset();
+                                    }
+                                    catch(InputMismatchException e){
+                                        cls();
+                                        System.out.println("You must enter a valid option number!");
+                                        option.reset();
+                                    }
 
                                     if(subOp == 1){
                                         auxCl.setActive(true);
@@ -222,9 +252,17 @@ public class Main {
                         subOp = 0;
                         employeeSubMenu();
 
-                        subOp = option.nextInt();
-                        option.reset();
-
+                        try {
+                            option.reset();
+                            subOp = option.nextInt();
+                            option.reset();
+                        }
+                        catch(InputMismatchException e){
+                            cls();
+                            System.out.println("You must enter a valid option number!");
+                            pressEnterKeyToContinue();
+                            option.reset();
+                        }
                         cls();
                         switch (subOp) {
                             case 1:                   //region New Employee
@@ -246,8 +284,17 @@ public class Main {
                                 break;
                                 //endregion
                             case 4:                   //region Edit Employee
+                                elCirculo.displayAllEmployees();
+                                System.out.println("Input the Employee´s phone to edit it: ");
+                                Employee auxEm = elCirculo.searchEmployeeByPhone(option.next());
 
-
+                                if(auxEm != null){
+                                    cls();
+                                    System.out.println(auxEm);
+                                    elCirculo.editEmployee(auxEm);
+                                }
+                                pressEnterKeyToContinue();
+                                option.reset();
                                 break;
                                 //endregion
                             case 5:                   //region Edit Employee Status
@@ -262,8 +309,17 @@ public class Main {
                                 if(auxE != null){
                                     System.out.println("\nActive status: " + auxE.isActive() + "\nSet status to 1:active | 2:inactive  | Other:keep original");
 
-                                    subOp = option.nextInt();
-                                    option.reset();
+                                    try {
+                                        option.reset();
+                                        subOp = option.nextInt();
+                                        option.reset();
+                                    }
+                                    catch(InputMismatchException e){
+                                        cls();
+                                        System.out.println("You must enter a valid option number!");
+                                        pressEnterKeyToContinue();
+                                        option.reset();
+                                    }
 
                                     if(subOp == 1){
                                         auxE.setActive(true);
@@ -291,8 +347,17 @@ public class Main {
                         subOp = 0;
                         productsSubMenu();
 
-                        subOp = option.nextInt();
-                        option.reset();
+                        try {
+                            option.reset();
+                            subOp = option.nextInt();
+                            option.reset();
+                        }
+                        catch(InputMismatchException e){
+                            cls();
+                            System.out.println("You must enter a valid option number!");
+                            pressEnterKeyToContinue();
+                            option.reset();
+                        }
 
                         cls();
                         switch (subOp) {
@@ -303,8 +368,17 @@ public class Main {
                                     subOp = 0;
                                     drinksSubMenu();
 
-                                    subOp = option.nextInt();
-                                    option.reset();
+                                    try {
+                                        option.reset();
+                                        subOp = option.nextInt();
+                                        option.reset();
+                                    }
+                                    catch(InputMismatchException e){
+                                        cls();
+                                        System.out.println("You must enter a valid option number!");
+                                        pressEnterKeyToContinue();
+                                        option.reset();
+                                    }
 
                                     cls();
                                     switch (subOp) {
@@ -325,8 +399,18 @@ public class Main {
                                             //endregion
                                         case 2:            //region Search Drink
                                             System.out.println("Input the ID to search the Drink: ");
-                                            subOp = option.nextInt();
-                                            option.reset();
+
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a number!");
+                                                pressEnterKeyToContinue();
+                                                option.reset();
+                                            }
 
                                             Drink aux = elCirculo.searchDrinkbyID(subOp);
 
@@ -342,24 +426,65 @@ public class Main {
                                             pressEnterKeyToContinue();
                                             break;
                                             //endregion
-                                        case 4:            //region Edit Drink
+                                        case 4:            //region Edit Drink Price
+                                            elCirculo.displayAllDrinks();
+                                            System.out.println("\nInput the ID to search the Drink: ");
 
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                pressEnterKeyToContinue();
+                                                option.reset();
+                                            }
 
+                                            Drink auxD = elCirculo.searchDrinkbyID(subOp);
+
+                                            if(auxD != null){
+                                                cls();
+                                                elCirculo.editProductPrice(auxD);
+                                                System.out.println(auxD);
+                                            }
+                                            option.reset();
+                                            pressEnterKeyToContinue();
                                             break;
                                             //endregion
                                         case 5:            //region Add stock to a Drink
                                             elCirculo.displayAllDrinks();
                                             System.out.println("\nInput Drink ID to add Stock: ");
-                                            subOp = option.nextInt();
-                                            option.reset();
+
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                pressEnterKeyToContinue();
+                                                option.reset();
+                                            }
 
                                             Drink auxC = elCirculo.searchDrinkbyID(subOp);
 
                                             if(auxC != null){
                                                 System.out.println("\nIn Stock: " + auxC.getStock() + "\nHow many units you want to add to this Drink?");
 
-                                                subOp = option.nextInt();
-                                                option.reset();
+                                                try {
+                                                    option.reset();
+                                                    subOp = option.nextInt();
+                                                    option.reset();
+                                                }
+                                                catch(InputMismatchException e){
+                                                    cls();
+                                                    System.out.println("You must enter a valid option number!");
+                                                    pressEnterKeyToContinue();
+                                                    option.reset();
+                                                }
 
                                                 auxC.setStock(auxC.getStock() + subOp);
                                                 System.out.println("\nStock Added!\nIn Stock: " + auxC.getStock());
@@ -380,15 +505,35 @@ public class Main {
                                     subOp = 0;
                                     foodSubMenu();
 
-                                    subOp = option.nextInt();
-                                    option.reset();
+                                    try {
+                                        option.reset();
+                                        subOp = option.nextInt();
+                                        option.reset();
+                                    }
+                                    catch(InputMismatchException e){
+                                        cls();
+                                        System.out.println("You must enter a valid option number!");
+                                        pressEnterKeyToContinue();
+                                        option.reset();
+                                    }
 
                                     cls();
                                     switch (subOp) {
                                         case 1:           //region New Food
                                             System.out.println("1: With Meat | 2: Without Meat | Other: Cancel");
-                                            subOp = option.nextInt();
-                                            option.reset();
+
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                pressEnterKeyToContinue();
+                                                option.reset();
+                                            }
+
                                             cls();
 
                                             if(subOp == 1){
@@ -402,8 +547,18 @@ public class Main {
                                             //endregion
                                         case 2:           //region Search Food
                                             System.out.println("Input the ID to search the Food: ");
-                                            subOp = option.nextInt();
-                                            option.reset();
+
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                pressEnterKeyToContinue();
+                                                option.reset();
+                                            }
 
                                             Food aux = elCirculo.searchFoodbyID(subOp);
 
@@ -419,9 +574,31 @@ public class Main {
                                             pressEnterKeyToContinue();
                                             break;
                                             //endregion
-                                        case 4:           //region Edit Food
+                                        case 4:           //region Edit Food Price
+                                            elCirculo.displayAllFood();
+                                            System.out.println("\nInput the ID to search the Food: ");
 
+                                            try {
+                                                option.reset();
+                                                subOp = option.nextInt();
+                                                option.reset();
+                                            }
+                                            catch(InputMismatchException e){
+                                                cls();
+                                                System.out.println("You must enter a valid option number!");
+                                                pressEnterKeyToContinue();
+                                                option.reset();
+                                            }
 
+                                            Food auxD = elCirculo.searchFoodbyID(subOp);
+
+                                            if(auxD != null){
+                                                cls();
+                                                elCirculo.editProductPrice(auxD);
+                                                System.out.println(auxD);
+                                            }
+                                            option.reset();
+                                            pressEnterKeyToContinue();
                                             break;
                                         //endregion
                                     }
@@ -443,8 +620,17 @@ public class Main {
                         subOp = 0;
                         ordersSubMenu();
 
-                        subOp = option.nextInt();
-                        option.reset();
+                        try {
+                            option.reset();
+                            subOp = option.nextInt();
+                            option.reset();
+                        }
+                        catch(InputMismatchException e){
+                            cls();
+                            System.out.println("You must enter a valid option number!");
+                            pressEnterKeyToContinue();
+                            option.reset();
+                        }
 
                         cls();
                         switch (subOp) {
@@ -472,8 +658,17 @@ public class Main {
                                     subOp = 0;
                                     displayOrdersSubMenu();
 
-                                    subOp = option.nextInt();
-                                    option.reset();
+                                    try {
+                                        option.reset();
+                                        subOp = option.nextInt();
+                                        option.reset();
+                                    }
+                                    catch(InputMismatchException e){
+                                        cls();
+                                        System.out.println("You must enter a valid option number!");
+                                        pressEnterKeyToContinue();
+                                        option.reset();
+                                    }
 
                                     cls();
                                     switch (subOp) {

@@ -924,5 +924,91 @@ public class TakeAway {
     {
         for (int i = 0; i < 50; ++i) System.out.println();
     }
+
+
+
+
+
+
+
+
+
+    public void editClient(Client aux) {
+        int op = 0;
+        System.out.println("\nWhat do you want to edit? 1. Name 2. Phone 3. Email 4. Address");
+        scanner.reset();
+        do {
+            op = scanner.nextInt(); scanner.reset(); scanner.nextLine();
+            switch (op) {
+                case 1:
+                    System.out.println("Input new name: ");
+                    aux.setName(scanner.nextLine());
+                    scanner.reset();
+                    break;
+                case 2:
+                    System.out.println("Input new phone: ");
+                    aux.setPhone(scanner.next());
+                    scanner.nextLine();
+                    scanner.reset();
+                    break;
+                case 3:
+                    System.out.println("Input new email: ");
+                    aux.setEmail(scanner.nextLine());
+                    scanner.reset();
+                    break;
+                case 4:
+                    System.out.println("Input new address: ");
+                    aux.setAddress(scanner.nextLine());
+                    scanner.reset(); scanner.nextLine();
+                    break;
+                default:
+                    System.out.println("Insert a valid number!");
+            }
+        } while (op < 1 || op > 4);
+    }
+
+    public void editEmployee(Employee aux) {
+        int op = 0;
+        System.out.println("\nWhat do you want to edit? 1.Name 2.Phone 3.Email 4.Address");
+        do {
+            op = scanner.nextInt();
+            switch (op) {
+                case 1:
+                    System.out.println("Input new name: ");
+                    aux.setName(scanner.nextLine());
+                    scanner.reset();
+                    break;
+                case 2:
+                    System.out.println("Input new phone: ");
+                    aux.setPhone(scanner.next());
+                    scanner.nextLine();
+                    scanner.reset();
+                    break;
+                case 3:
+                    System.out.println("Input new email: ");
+                    aux.setEmail(scanner.nextLine());
+                    scanner.reset();
+                    break;
+                case 4:
+                    System.out.println("Input new address: ");
+                    aux.setAddress(scanner.next());
+                    scanner.reset(); scanner.nextLine();
+                    break;
+                default:
+                    System.out.println("Insert a valid number!");
+                    break;
+            }
+        } while (op < 1 || op > 4);
+    }
+
+    public void editProductPrice(Product product){
+        System.out.println("\nStock price: $" + product.getPrice() + "\nInput new price: ");
+        product.setPrice(scanner.nextFloat());
+        scanner.reset();
+    }
+
+
+
 }
+
 

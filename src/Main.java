@@ -122,22 +122,23 @@ public class Main {
         //Load data from disk
         elCirculo.loadProductsData();
         elCirculo.loadPersonsData();
+        //elCirculo.loadOrdersData();
 
         System.out.println("---------------------------------------------------------------------------\n");
 
         Scanner option = new Scanner(System.in);
         int op = 0;
         int subOp = 0;
-
+                                  //region MAIN MENU
         while(op != 9) {
             op = 0;
-            menu();                //MAIN MENU
+            menu();
 
             op = option.nextInt();
             option.reset(); option.nextLine();
 
             switch (op) {
-                case 1:                   //CLIENTS SUBMENU
+                case 1:                   //region CLIENTS SUBMENU
                     subOp = 0;
 
                     while (subOp != 9){
@@ -149,11 +150,12 @@ public class Main {
 
                         cls();
                         switch (subOp) {
-                            case 1:
+                            case 1:                    //region New Client
                                 elCirculo.makeClient();
                                 option.reset();
                                 break;
-                            case 2:
+                                //endregion
+                            case 2:                    //region Search Client
                                 System.out.println("Input the Client´s phone to search for it: ");
                                 Client aux = elCirculo.searchClientByPhone(option.next());
                                 if(aux != null){
@@ -162,49 +164,58 @@ public class Main {
                                 pressEnterKeyToContinue();
                                 option.reset(); option.nextLine();
                                 break;
-                            case 3:
+                                //endregion
+                            case 3:                    //region Display all clients
                                 elCirculo.displayAllClients();
                                 pressEnterKeyToContinue();
-
                                 break;
-                            case 4:
-
-
+                                //endregion
+                            case 4:                    //region Edit Client
+                                System.out.println("Input the Client´s phone to edit it: ");
+                                Client auxC = elCirculo.searchClientByPhone(option.next());
+                                if(auxC != null){
+                                    System.out.println(auxC);
+                                    //Edit Form
+                                }
+                                pressEnterKeyToContinue();
+                                option.reset(); option.nextLine();
                                 break;
-                            case 5:
+                                //endregion
+                            case 5:                    //region Change Active status
                                 String stringOption;
                                 elCirculo.displayAllClients();
                                 System.out.println("\nInput Client phone to edit status: ");
                                 stringOption = option.next();
                                 option.reset();
 
-                                Client auxC = elCirculo.searchClientByPhone(stringOption);
+                                Client auxCl = elCirculo.searchClientByPhone(stringOption);
 
-                                if(auxC != null){
-                                    System.out.println("\nActive status: " + auxC.isActive() + "\nSet status to 1:active | 2:inactive  | Other:keep original");
+                                if(auxCl != null){
+                                    System.out.println("\nActive status: " + auxCl.isActive() + "\nSet status to 1:active | 2:inactive  | Other:keep original");
 
                                     subOp = option.nextInt();
                                     option.reset();
 
                                     if(subOp == 1){
-                                        auxC.setActive(true);
+                                        auxCl.setActive(true);
                                         System.out.println("\nThe client is now Active!");
                                     }
                                     if(subOp == 2){
-                                        auxC.setActive(false);
+                                        auxCl.setActive(false);
                                         System.out.println("\nThe client is now Inactive");
                                     }
 
                                 }
                                 pressEnterKeyToContinue();
                                 break;
-
+                                //endregion
                         }
                         option.reset(); option.nextLine();
                         cls();
                     }
                     break;
-                case 2:                   //EMPLOYEES SUBMENU
+                    //endregion
+                case 2:                   //region EMPLOYEES SUBMENU
                     subOp = 0;
 
                     while (subOp != 9){
@@ -216,10 +227,11 @@ public class Main {
 
                         cls();
                         switch (subOp) {
-                            case 1:
+                            case 1:                   //region New Employee
                                 elCirculo.makeEmployee();
                                 break;
-                            case 2:
+                                //endregion
+                            case 2:                   //region Search Employee
                                 System.out.println("Input the Employee´s phone to search for it: ");
                                 Employee aux = elCirculo.searchEmployeeByPhone(option.next());
                                 if(aux != null){
@@ -227,15 +239,18 @@ public class Main {
                                 }
                                 pressEnterKeyToContinue();
                                 break;
-                            case 3:
+                                //endregion
+                            case 3:                   //region Display all Employees
                                 elCirculo.displayAllEmployees();
                                 pressEnterKeyToContinue();
                                 break;
-                            case 4:
+                                //endregion
+                            case 4:                   //region Edit Employee
 
 
                                 break;
-                            case 5:
+                                //endregion
+                            case 5:                   //region Edit Employee Status
                                 String stringOption;
                                 elCirculo.displayAllEmployees();
                                 System.out.println("\nInput Employee phone to edit status: ");
@@ -261,14 +276,15 @@ public class Main {
 
                                 }
                                 pressEnterKeyToContinue();
-
                                 break;
+                                //endregion
                         }
                         option.reset(); option.nextLine();
                         cls();
                     }
                     break;
-                case 3:                   //PRODUCTS SUBMENU
+                    //endregion
+                case 3:                   //region PRODUCTS SUBMENU
                     subOp = 0;
 
                     while (subOp != 9){
@@ -280,7 +296,7 @@ public class Main {
 
                         cls();
                         switch (subOp) {
-                            case 1:
+                            case 1:     //region Drinks SUBMENU
                                 subOp = 0;
 
                                 while (subOp != 9){
@@ -292,7 +308,7 @@ public class Main {
 
                                     cls();
                                     switch (subOp) {
-                                        case 1:
+                                        case 1:            //region New Drink
                                             System.out.println("1: Alcoholic | 2: Non Alcohol | Other: Cancel");
                                             subOp = option.nextInt();
                                             option.reset();
@@ -306,7 +322,8 @@ public class Main {
                                             }
                                             option.reset();
                                             break;
-                                        case 2:
+                                            //endregion
+                                        case 2:            //region Search Drink
                                             System.out.println("Input the ID to search the Drink: ");
                                             subOp = option.nextInt();
                                             option.reset();
@@ -319,15 +336,18 @@ public class Main {
 
                                             pressEnterKeyToContinue();
                                             break;
-                                        case 3:
+                                            //endregion
+                                        case 3:            //region Display all Drinks
                                             elCirculo.displayAllDrinks();
                                             pressEnterKeyToContinue();
                                             break;
-                                        case 4:
+                                            //endregion
+                                        case 4:            //region Edit Drink
 
 
                                             break;
-                                        case 5:
+                                            //endregion
+                                        case 5:            //region Add stock to a Drink
                                             elCirculo.displayAllDrinks();
                                             System.out.println("\nInput Drink ID to add Stock: ");
                                             subOp = option.nextInt();
@@ -346,12 +366,14 @@ public class Main {
                                             }
                                             pressEnterKeyToContinue();
                                             break;
+                                            //endregion
                                     }
                                     option.reset();
                                     cls();
                                 }
                                 break;
-                            case 2:
+                                //endregion
+                            case 2:     //region Food SUBMENU
                                 subOp = 0;
 
                                 while (subOp != 9){
@@ -363,7 +385,7 @@ public class Main {
 
                                     cls();
                                     switch (subOp) {
-                                        case 1:
+                                        case 1:           //region New Food
                                             System.out.println("1: With Meat | 2: Without Meat | Other: Cancel");
                                             subOp = option.nextInt();
                                             option.reset();
@@ -377,7 +399,8 @@ public class Main {
                                             }
                                             option.reset();
                                             break;
-                                        case 2:
+                                            //endregion
+                                        case 2:           //region Search Food
                                             System.out.println("Input the ID to search the Food: ");
                                             subOp = option.nextInt();
                                             option.reset();
@@ -390,25 +413,30 @@ public class Main {
 
                                             pressEnterKeyToContinue();
                                             break;
-                                        case 3:
+                                            //endregion
+                                        case 3:           //region Display all Food
                                             elCirculo.displayAllFood();
                                             pressEnterKeyToContinue();
                                             break;
-                                        case 4:
+                                            //endregion
+                                        case 4:           //region Edit Food
 
 
                                             break;
+                                        //endregion
                                     }
                                     option.reset();
                                     cls();
                                 }
                                 break;
+                                //endregion
                         }
                         option.reset();
                         cls();
                     }
                     break;
-                case 4:                   //ORDERS SUBMENU
+                    //endregion
+                case 4:                   //region ORDERS SUBMENU
                     subOp = 0;
 
                     while (subOp != 9){
@@ -420,11 +448,12 @@ public class Main {
 
                         cls();
                         switch (subOp) {
-                            case 1:
+                            case 1:                //region New Order
                                 elCirculo.makeOrder();
                                 option.reset();
                                 break;
-                            case 2:
+                                //endregion
+                            case 2:                //region Search Order
                                 System.out.println("Input the Order ID to search for it: ");
                                 Order aux = elCirculo.searchOrderbyOrderID(option.nextInt());
 
@@ -435,7 +464,8 @@ public class Main {
                                 pressEnterKeyToContinue();
                                 option.reset(); option.nextLine();
                                 break;
-                            case 3:
+                            //endregion
+                            case 3:                //region Display Orders
                                 subOp = 0;
 
                                 while (subOp != 9){
@@ -447,11 +477,12 @@ public class Main {
 
                                     cls();
                                     switch (subOp) {
-                                        case 1:
+                                        case 1:            //region Display all Orders
                                             elCirculo.displayAllOrders();
                                             pressEnterKeyToContinue();
                                             break;
-                                        case 2:
+                                        //endregion
+                                        case 2:            //region Display Orders by Client
                                             elCirculo.displayAllClients();
                                             System.out.println("\nInput the Client´s phone to search for it: ");
                                             Client auxC = elCirculo.searchClientByPhone(option.next());
@@ -463,26 +494,32 @@ public class Main {
 
                                             pressEnterKeyToContinue();
                                             break;
-                                        case 3:
+                                        //endregion
+                                        case 3:            //region Display today Orders
                                             elCirculo.displayTodayOrders();
                                             pressEnterKeyToContinue();
                                             break;
+                                        //endregion
                                     }
                                     option.reset();
                                     cls();
                                 }
                                 break;
+                            //endregion
                         }
                         option.reset();
                         cls();
                     }
                     break;
+                    //endregion
             }
             option.reset();
             cls();
         }
+        //Save data to file
         elCirculo.saveProductsData();
         elCirculo.savePersonsData();
+        //elCirculo.saveOrdersData();
 
         System.out.println("\n\n\n\t\t\t\t< -- See you later, Have a great day! :) -- >\n\n\n" +
                            "----------------------------------------------------------------------------------");

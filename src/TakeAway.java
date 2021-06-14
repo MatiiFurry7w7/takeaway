@@ -740,11 +740,7 @@ public class TakeAway {
 
     //endregion
 
-    public static void cls()
-    {
-        for (int i = 0; i < 50; ++i) System.out.println();
-    }
-
+    //Save data..
     public void saveProductsData(){
 
         //Saving drinks data to File
@@ -798,6 +794,11 @@ public class TakeAway {
         }
     }
 
+    public void saveOrdersData(){
+
+    } //
+
+    //Load data..
     public void loadProductsData() {
         //Loading drinks from File
         File auxSerial = new File("src\\data\\drinksData.Json");
@@ -917,12 +918,11 @@ public class TakeAway {
         }
     }
 
-/*
-    Comparator<Drink> compareByTimeOrdered = new Comparator<Drink>() {
-        @Override
-        public int compare(Drink o1, Drink o2) {
-            return o1.getStock().compareTo(o2.getStock());
-        }
-    };*/
+    public void loadOrdersData(){} //
+
+    public static void cls()
+    {
+        for (int i = 0; i < 50; ++i) System.out.println();
+    }
 }
 

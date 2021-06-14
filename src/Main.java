@@ -429,30 +429,30 @@ public class Main {
                                         case 4:            //region Edit Drink Price
                                             elCirculo.displayAllDrinks();
                                             System.out.println("\nInput the ID to search the Drink: ");
-
+                                            Drink auxD=null;
                                             try {
                                                 option.reset();
                                                 subOp = option.nextInt();
                                                 option.reset();
+                                                auxD = elCirculo.searchDrinkbyID(subOp);
                                             }
                                             catch(InputMismatchException e){
                                                 cls();
                                                 System.out.println("You must enter a valid option number!");
-                                                pressEnterKeyToContinue();
-                                                option.reset();
+                                                option.reset(); option.nextLine();
                                             }
 
-                                            Drink auxD = elCirculo.searchDrinkbyID(subOp);
+
 
                                             if(auxD != null){
                                                 cls();
                                                 elCirculo.editProductPrice(auxD);
-                                                System.out.println(auxD);
+                                                System.out.println("$"+auxD.getPrice());
                                             }
                                             option.reset();
                                             pressEnterKeyToContinue();
                                             break;
-                                            //endregion
+                                        //endregion
                                         case 5:            //region Add stock to a Drink
                                             elCirculo.displayAllDrinks();
                                             System.out.println("\nInput Drink ID to add Stock: ");
@@ -577,25 +577,23 @@ public class Main {
                                         case 4:           //region Edit Food Price
                                             elCirculo.displayAllFood();
                                             System.out.println("\nInput the ID to search the Food: ");
-
+                                            Food auxF=null;
                                             try {
                                                 option.reset();
                                                 subOp = option.nextInt();
                                                 option.reset();
+                                                auxF = elCirculo.searchFoodbyID(subOp);
                                             }
                                             catch(InputMismatchException e){
                                                 cls();
                                                 System.out.println("You must enter a valid option number!");
-                                                pressEnterKeyToContinue();
-                                                option.reset();
+                                                option.reset(); option.nextLine();
                                             }
 
-                                            Food auxD = elCirculo.searchFoodbyID(subOp);
-
-                                            if(auxD != null){
+                                            if(auxF != null){
                                                 cls();
-                                                elCirculo.editProductPrice(auxD);
-                                                System.out.println(auxD);
+                                                elCirculo.editProductPrice(auxF);
+                                                System.out.println("$"+auxF.getPrice());
                                             }
                                             option.reset();
                                             pressEnterKeyToContinue();
@@ -739,7 +737,7 @@ public class Main {
                 "\n\n1_ New Client" +
                 "\n2_ Search Client" +
                 "\n3_ Display Clients" +
-                "\n4_ Edit Client Data ()" +
+                "\n4_ Edit Client Data" +
                 "\n5_ Edit Client Status" +
                 "\n\n9_ Go Back");
 
@@ -752,7 +750,7 @@ public class Main {
                         "\n\n1_ New Employee" +
                         "\n2_ Search Employee" +
                         "\n3_ Display Employee" +
-                        "\n4_ Edit Employee Data ()" +
+                        "\n4_ Edit Employee Data" +
                         "\n5_ Edit Employee Status" +
                         "\n\n9_ Go Back");
 
@@ -775,7 +773,7 @@ public class Main {
                         "\n\n1_ New Drink" +
                         "\n2_ Search Drink" +
                         "\n3_ Display Drinks" +
-                        "\n4_ Edit Drink Data" +
+                        "\n4_ Edit Drink Price" +
                         "\n5_ Add more stock" +
                         "\n\n9_ Go Back");
     }
@@ -787,7 +785,7 @@ public class Main {
                         "\n\n1_ New Food" +
                         "\n2_ Search Food" +
                         "\n3_ Display Food" +
-                        "\n4_ Edit Food Data" +
+                        "\n4_ Edit Food Price" +
                         "\n\n9_ Go Back");
     }
 

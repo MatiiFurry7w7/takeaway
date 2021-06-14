@@ -27,7 +27,6 @@ public class Main {
         //TakeAway Declaration
         TakeAway elCirculo = new TakeAway();
 
-
         //region TESTS!
 
         //Test date for tests
@@ -123,6 +122,8 @@ public class Main {
         //Load data from disk
         elCirculo.loadProductsData();
         elCirculo.loadPersonsData();
+
+        System.out.println("---------------------------------------------------------------------------\n");
 
         Scanner option = new Scanner(System.in);
         int op = 0;
@@ -454,26 +455,25 @@ public class Main {
                                             elCirculo.displayAllClients();
                                             System.out.println("\nInput the Client´s phone to search for it: ");
                                             Client auxC = elCirculo.searchClientByPhone(option.next());
+                                            option.reset();
 
                                             if(auxC != null){
                                                 elCirculo.displayAllOrders(auxC);
                                             }
 
                                             pressEnterKeyToContinue();
-                                            option.reset();
-
                                             break;
                                         case 3:
                                             elCirculo.displayTodayOrders();
                                             pressEnterKeyToContinue();
                                             break;
                                     }
-                                    option.reset(); option.nextLine();
+                                    option.reset();
                                     cls();
                                 }
                                 break;
                         }
-                        option.reset(); option.nextLine();
+                        option.reset();
                         cls();
                     }
                     break;
@@ -481,12 +481,16 @@ public class Main {
             option.reset();
             cls();
         }
+        elCirculo.saveProductsData();
+        elCirculo.savePersonsData();
 
-        System.out.println("\t\t\t\t< -- See you later, Have a great day! :) -- >\n\n\n");
+        System.out.println("\n\n\n\t\t\t\t< -- See you later, Have a great day! :) -- >\n\n\n" +
+                           "----------------------------------------------------------------------------------");
         //endregion
 
     }
 
+    //region Menu
     public static void menu(){
         System.out.println("\nWelcome to the TakeAway System!" +
                 "\n\n1_ Clients management" +
@@ -584,6 +588,7 @@ public class Main {
         catch(Exception e)
         {}
     }
+    //endregion
 
     public static void cls()
     {

@@ -791,7 +791,7 @@ public class TakeAway {
 
             objOutputStream.close();
 
-            System.out.println("\nSuccessfully saved persons Data to File!..");
+            System.out.println("Successfully saved persons Data to File!..");
         }
         catch (Exception e){
             System.out.println(e.getMessage());

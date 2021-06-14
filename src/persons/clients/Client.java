@@ -50,6 +50,10 @@ public class Client extends Person {
         this.id = id;
     }
 
+    public static void setLocalID(int localID) {
+        Client.localID = localID;
+    }
+
     public int getOrdersAmount() {
         return ordersAmount;
     }
@@ -69,6 +73,7 @@ public class Client extends Person {
     @Override
     public String toString() {
         return          "\nID: #" + id +
+                        "\nActive status: " + isActive() +
                         "\nName: " + super.getName() +
                         "\nPhone: " + super.getPhone() +
                         "\nE-mail: " + super.getEmail() +

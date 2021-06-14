@@ -5,6 +5,7 @@ import persons.clients.Client;
 import persons.clients.Order;
 import persons.employees.Employee;
 import persons.employees.typeEmployeeArea;
+import products.Product;
 import products.drinks.*;
 import products.food.Food;
 import products.food.WithMeat;
@@ -88,8 +89,8 @@ public class TakeAway {
         scanner.reset();
 
         System.out.println("Address: ");
-        aux.setAddress(scanner.nextLine());
-        scanner.reset();
+        aux.setAddress(scanner.next());
+        scanner.reset(); scanner.nextLine();
 
         for (Person eachClient : persons) {
             if (eachClient.equals(aux)) {
@@ -470,7 +471,8 @@ public class TakeAway {
 
         while(!op.equals("Cancel")) {
 
-            System.out.println("Input the Client´s phone to search for it: ");
+            displayAllClients();
+            System.out.println("\nInput the Client´s phone to search for it: ");
             auxClient = searchClientByPhone(scanner.next()); scanner.reset();
 
             //"While" statement to find the Client to add to the Order
@@ -480,7 +482,8 @@ public class TakeAway {
                 op = scanner.next(); scanner.reset();
 
                 if(!op.equals("Cancel")){
-                    System.out.println("Input the Client´s phone to search for it: ");
+                    displayAllClients();
+                    System.out.println("\nInput the Client´s phone to search for it: ");
                     auxClient = searchClientByPhone(scanner.next()); scanner.reset();
                 }
                 else
@@ -648,9 +651,9 @@ public class TakeAway {
         return null;
     }
 
-    public Order searchOrderbyClientAndOrderID(Client client, int orderID){
+    public Order searchOrderbyOrderID(int orderID){
         for (Order eachOrder : orders){
-            if(eachOrder.getClient() == client && eachOrder.getId() == orderID){
+            if(eachOrder.getId() == orderID){
                 return eachOrder;
             }
         }
@@ -813,7 +816,9 @@ public class TakeAway {
 
             while (aux != null){
                 if (aux instanceof Drink) {
-                    addDrinkToStore((Drink) aux);
+                    Drink auxD = (Drink) aux;
+                    ((Drink) auxD).newID();
+                    addDrinkToStore(auxD);
                 }
                 aux = objInputStream.readObject();
             }
@@ -847,7 +852,9 @@ public class TakeAway {
 
             while (aux != null){
                 if (aux instanceof Food) {
-                    addFoodtoStore((Food) aux);
+                    Food auxF = (Food) aux;
+                    auxF.newID();
+                    addFoodtoStore(auxF);
                 }
                 aux = objInputStream.readObject();
             }
@@ -861,7 +868,7 @@ public class TakeAway {
             System.out.println("An error has occurred!");
         }
         finally {
-            System.out.println("Successfully loaded Food Data from File!...\n");
+            System.out.println("Successfully loaded Food Data from File!...");
         }
 
     }
@@ -883,9 +890,17 @@ public class TakeAway {
             persons.clear();
 
             while (aux != null){
-                if (aux instanceof Person) {
-                    addPersonToStore((Person) aux);
+                if (aux instanceof Client) {
+                    Client auxC = (Client) aux;
+                    auxC.newID();
+                    addPersonToStore(auxC);
                 }
+                if (aux instanceof Employee) {
+                    Employee auxE = (Employee) aux;
+                    auxE.newID();
+                    addPersonToStore(auxE);
+                }
+
                 aux = objInputStream.readObject();
             }
 
@@ -898,10 +913,9 @@ public class TakeAway {
             System.out.println("An error has occurred!");
         }
         finally {
-            System.out.println("\nSuccessfully loaded persons Data from File!...");
+            System.out.println("Successfully loaded persons Data from File!...");
         }
     }
-
 
 /*
     Comparator<Drink> compareByTimeOrdered = new Comparator<Drink>() {

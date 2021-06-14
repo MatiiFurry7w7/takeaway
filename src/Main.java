@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,11 +24,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
         //TakeAway Declaration
         TakeAway elCirculo = new TakeAway();
 
         //region TESTS!
+
+        //PREMIUM Client test
+        Client premiumTest = new Client("Matias Mercado", "321", "matii@gmail.com", "Alberdi 7777");
+        premiumTest.setOrdersAmount(9);
+        elCirculo.addPersonToStore(premiumTest);
+        //
 
         //Test date for tests
         LocalDate testDate = LocalDate.parse("20/03/2001", DateTimeFormatter.ofPattern("d/MM/yyyy"));
@@ -112,6 +118,12 @@ public class Main {
 
         elCirculo.displayAllClients();
         elCirculo.displayAllEmployees();
+
+        //Orders files
+        elCirculo.saveOrdersData();
+        elCirculo.loadOrdersData();
+
+        elCirculo.displayAllOrders();
         */
         //endregion
 
@@ -635,6 +647,7 @@ public class Main {
                             case 1:                //region New Order
                                 elCirculo.makeOrder();
                                 option.reset();
+                                pressEnterKeyToContinue();
                                 break;
                                 //endregion
                             case 2:                //region Search Order
@@ -688,7 +701,21 @@ public class Main {
                                             pressEnterKeyToContinue();
                                             break;
                                         //endregion
-                                        case 3:            //region Display today Orders
+                                        case 3:            //region Display Orders by Date
+                                            System.out.println("\nInput the Date to filter (d/MM/yyyy): ");
+
+                                            try {
+                                                elCirculo.displayAllOrders(option.next());
+                                                option.reset();
+                                            }
+                                            catch(DateTimeParseException e){
+                                                System.out.println("Wrong Format!");
+                                            }
+
+                                            pressEnterKeyToContinue();
+                                            break;
+                                        //endregion
+                                        case 4:            //region Display today Orders
                                             elCirculo.displayTodayOrders();
                                             pressEnterKeyToContinue();
                                             break;
@@ -805,7 +832,8 @@ public class Main {
                 "\nDisplay Orders" +
                         "\n\n1_ Display All" +
                         "\n2_ Display by Client" +
-                        "\n3_ Display today Orders" +
+                        "\n3_ Display by Date" +
+                        "\n4_ Display today Orders" +
                         "\n\n9_ Go Back");
     }
 

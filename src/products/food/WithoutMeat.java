@@ -26,7 +26,6 @@ public class WithoutMeat extends Food implements premiumDiscount {
     public void setPreparation(String preparation) {
         this.preparation = preparation;
     }
-
     //endregion
 
     @Override

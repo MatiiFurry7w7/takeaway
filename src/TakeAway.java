@@ -14,6 +14,7 @@ import products.food.typeMeat;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class TakeAway {
@@ -557,6 +558,10 @@ public class TakeAway {
 
                 //Set +1 to the Client order´s amount
                 auxClient.setOrdersAmount(auxClient.getOrdersAmount() + 1);
+                if(auxClient.getOrdersAmount() == 10){
+                    auxClient.setPremium(true);
+                    System.out.println("This client is now PREMIUM!:\nNow there will be a 10% discount to the Food without Meat and the Drinks without alcohol!");
+                }
 
                 if(aux.getCart().calculateTotal() < 1){
                     aux = null;
@@ -564,10 +569,8 @@ public class TakeAway {
                 op = "Cancel";
             }
         }
-
-        cls();
-
         addOrderToStore(aux);
+        System.out.println("\nOrder made!");
 
         return aux;
     }
@@ -701,6 +704,17 @@ public class TakeAway {
         }
     }
 
+    //Polymorphism
+    public void displayAllOrders(){
+        int count = 0;
+        for (Order eachOrder : orders){
+            System.out.println(eachOrder);
+            count++;
+        }
+        if(count == 0)
+            System.out.println("Orders not found");
+    }
+
     public void displayAllOrders(Client client){
         int count = 0;
         for (Order eachOrder : orders){
@@ -713,14 +727,18 @@ public class TakeAway {
             System.out.println("Orders not found");
     }
 
-    public void displayAllOrders(){
+    public void displayAllOrders(String date){
+        LocalDate fecha1 = LocalDate.parse(date, DateTimeFormatter.ofPattern("d/MM/yyyy"));
+
         int count = 0;
         for (Order eachOrder : orders){
+            if(eachOrder.getDate().equals(fecha1)){
                 System.out.println(eachOrder);
                 count++;
+            }
         }
         if(count == 0)
-            System.out.println("Orders not found");
+            System.out.println("There were no orders that day!");
     }
 
     public void displayTodayOrders(){
@@ -741,7 +759,6 @@ public class TakeAway {
     //endregion
 
     //region "Edit" Methods to edit each instance in the system
-
     public void editClient(Client aux) {
         int op = 0;
         System.out.println("\nWhat do you want to edit? 1. Name 2. Phone 3. Email 4. Address");
@@ -775,7 +792,6 @@ public class TakeAway {
             }
         } while (op < 1 || op > 4);
     }
-
     public void editEmployee(Employee aux) {
         int op = 0;
         System.out.println("\nWhat do you want to edit? 1.Name 2.Phone 3.Email 4.Address");
@@ -789,31 +805,30 @@ public class TakeAway {
             System.out.println("You must enter a valid option number!");
             scanner.reset(); scanner.nextLine();
         }
-              switch (op) {
-                case 1:
-                    System.out.println("Input new name: ");
-                    aux.setName(scanner.nextLine());
-                    scanner.reset();
-                    break;
-                case 2:
-                    System.out.println("Input new phone: ");
-                    aux.setPhone(scanner.next());
-                    scanner.nextLine();
-                    scanner.reset();
-                    break;
-                case 3:
-                    System.out.println("Input new email: ");
-                    aux.setEmail(scanner.nextLine());
-                    scanner.reset();
-                    break;
-                case 4:
-                    System.out.println("Input new address: ");
-                    aux.setAddress(scanner.next());
-                    scanner.reset(); scanner.nextLine();
-                    break;
-            }
+        switch (op) {
+            case 1:
+                System.out.println("Input new name: ");
+                aux.setName(scanner.nextLine());
+                scanner.reset();
+                break;
+            case 2:
+                System.out.println("Input new phone: ");
+                aux.setPhone(scanner.next());
+                scanner.nextLine();
+                scanner.reset();
+                break;
+            case 3:
+                System.out.println("Input new email: ");
+                aux.setEmail(scanner.nextLine());
+                scanner.reset();
+                break;
+            case 4:
+                System.out.println("Input new address: ");
+                aux.setAddress(scanner.next());
+                scanner.reset(); scanner.nextLine();
+                break;
+        }
     }
-
     public void editProductPrice(Product product){
 
         System.out.println("\nStock price: $" + product.getPrice() + "\nInput new price: ");
@@ -827,17 +842,9 @@ public class TakeAway {
             scanner.reset();  scanner.nextLine();
         }
     }
-//endregion
+    //endregion
 
-
-
-
-
-    public static void cls()
-    {
-        for (int i = 0; i < 50; ++i) System.out.println();
-    }
-
+    //region Files management
     //Save data..
     public void saveProductsData(){
 
@@ -1017,6 +1024,12 @@ public class TakeAway {
     }
 
     public void loadOrdersData(){} //
+    //endregion
+
+    public static void cls()
+    {
+        for (int i = 0; i < 50; ++i) System.out.println();
+    }
 
 }
 

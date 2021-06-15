@@ -136,11 +136,12 @@ public class Main {
         //region         < -- MAIN PROGRAM MENU -- >
 
         //Load data from disk
+        System.out.println("\033[1;92m"); //Green text
         elCirculo.loadProductsData();
         elCirculo.loadPersonsData();
         elCirculo.loadOrdersData();
 
-        System.out.println("---------------------------------------------------------------------------\n");
+        System.out.println("---------------------------------------------------------------------------\n" + "\033[40m\u001B[35m" );
 
         Scanner option = new Scanner(System.in);
         int op = 0;
@@ -420,20 +421,18 @@ public class Main {
                                                 option.reset();
                                                 subOp = option.nextInt();
                                                 option.reset();
+
+                                                if(elCirculo.searchDrinkbyID(subOp) != null){
+                                                    System.out.println(elCirculo.searchDrinkbyID(subOp));
+                                                }
                                             }
                                             catch(InputMismatchException e){
                                                 cls();
                                                 System.out.println("You must enter a number!");
-                                                pressEnterKeyToContinue();
                                                 option.reset();
                                             }
 
-                                            Drink aux = elCirculo.searchDrinkbyID(subOp);
-
-                                            if(aux != null){
-                                                System.out.println(aux);
-                                            }
-
+                                            option.nextLine();
                                             pressEnterKeyToContinue();
                                             break;
                                             //endregion
@@ -446,6 +445,7 @@ public class Main {
                                             elCirculo.displayAllDrinks();
                                             System.out.println("\nInput the ID to search the Drink: ");
                                             Drink auxD=null;
+
                                             try {
                                                 option.reset();
                                                 subOp = option.nextInt();
@@ -456,16 +456,15 @@ public class Main {
                                                 cls();
                                                 System.out.println("You must enter a valid option number!");
                                                 option.reset(); option.nextLine();
+                                                subOp = 0;
                                             }
-
-
 
                                             if(auxD != null){
                                                 cls();
                                                 elCirculo.editProductPrice(auxD);
                                                 System.out.println("$"+auxD.getPrice());
                                             }
-                                            option.reset();
+                                            option.nextLine();
                                             pressEnterKeyToContinue();
                                             break;
                                         //endregion
@@ -568,19 +567,20 @@ public class Main {
                                                 option.reset();
                                                 subOp = option.nextInt();
                                                 option.reset();
+
+                                                Food aux = elCirculo.searchFoodbyID(subOp);
+
+                                                if(aux != null){
+                                                    System.out.println(aux);
+                                                }
                                             }
                                             catch(InputMismatchException e){
                                                 cls();
                                                 System.out.println("You must enter a valid option number!");
-                                                pressEnterKeyToContinue();
                                                 option.reset();
+                                                subOp = 0;
                                             }
-
-                                            Food aux = elCirculo.searchFoodbyID(subOp);
-
-                                            if(aux != null){
-                                                System.out.println(aux);
-                                            }
+                                            option.nextLine();
 
                                             pressEnterKeyToContinue();
                                             break;
@@ -812,11 +812,12 @@ public class Main {
             cls();
         }
         //Save data to file
+        System.out.println("\033[1;92m");
         elCirculo.saveProductsData();
         elCirculo.savePersonsData();
         elCirculo.saveOrdersData();
 
-        System.out.println("\n\n\n\t\t\t\t< -- See you later, Have a great day! :) -- >\n\n\n" +
+        System.out.println("\n\n\n\t\t\t\t< -- See you later! :) -- >\n\n\n" +
                            "----------------------------------------------------------------------------------");
         //endregion
 

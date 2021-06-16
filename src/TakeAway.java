@@ -75,6 +75,7 @@ public class TakeAway {
 
         Client aux = new Client();
 
+        try{
         scanner.reset();
         System.out.println("Name: ");
         aux.setName(scanner.nextLine());
@@ -91,7 +92,14 @@ public class TakeAway {
 
         System.out.println("Address: ");
         aux.setAddress(scanner.next());
-        scanner.reset(); scanner.nextLine();
+        scanner.reset();
+        scanner.nextLine();
+    }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
 
         for (Person eachClient : persons) {
             if (eachClient.equals(aux)) {
@@ -110,6 +118,7 @@ public class TakeAway {
 
         Employee aux = new Employee();
 
+        try{
         scanner.reset();
         System.out.println("Name: ");
         aux.setName(scanner.nextLine());
@@ -154,6 +163,12 @@ public class TakeAway {
                     break;
             }
         } while (a < 1 || a > 5);
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
 
         for (Person eachEmployee : persons) {
             if (eachEmployee.equals(aux)) {
@@ -172,53 +187,60 @@ public class TakeAway {
 
         WithMeat aux = new WithMeat();
 
-        scanner.reset();
-        System.out.println("Name: ");
-        aux.setName(scanner.nextLine());
-        scanner.reset();
+        try{
+            scanner.reset();
+            System.out.println("Name: ");
+            aux.setName(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Price: ");
-        aux.setPrice(scanner.nextFloat());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Price: ");
+            aux.setPrice(scanner.nextFloat());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Description: ");
-        aux.setDescription(scanner.nextLine());
-        scanner.reset();
+            System.out.println("Description: ");
+            aux.setDescription(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Number of people recommended per dish: ");
-        aux.setNumberPeopleRecommended(scanner.nextInt());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Number of people recommended per dish: ");
+            aux.setNumberPeopleRecommended(scanner.nextInt());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Type of meat: \n1.Beef\n2.Fish\n3.Pork\n4.Chicken\n5.Other");
-        scanner.reset();
-        int a;
-        do {
-            a = scanner.nextInt();
-            switch (a) {
-                case 1:
-                    aux.setMeatType(typeMeat.Beef);
-                    break;
-                case 2:
-                    aux.setMeatType(typeMeat.Fish);
-                    break;
-                case 3:
-                    aux.setMeatType(typeMeat.Pork);
-                    break;
-                case 4:
-                    aux.setMeatType(typeMeat.Chicken);
-                    break;
-                case 5:
-                    aux.setMeatType(typeMeat.Other);
-                    break;
-                default:
-                    System.out.println("Invalid input. Insert a correct input.");
-                    break;
-            }
-        } while (a < 1 || a > 6);
-        scanner.reset();
-        scanner.nextLine();
+            System.out.println("Type of meat: \n1.Beef\n2.Fish\n3.Pork\n4.Chicken\n5.Other");
+            scanner.reset();
+            int a;
+            do {
+                a = scanner.nextInt();
+                switch (a) {
+                    case 1:
+                        aux.setMeatType(typeMeat.Beef);
+                        break;
+                    case 2:
+                        aux.setMeatType(typeMeat.Fish);
+                        break;
+                    case 3:
+                        aux.setMeatType(typeMeat.Pork);
+                        break;
+                    case 4:
+                        aux.setMeatType(typeMeat.Chicken);
+                        break;
+                    case 5:
+                        aux.setMeatType(typeMeat.Other);
+                        break;
+                    default:
+                        System.out.println("Invalid input. Insert a correct input.");
+                        break;
+                }
+            } while (a < 1 || a > 6);
+            scanner.reset();
+            scanner.nextLine();
+        }
+        catch(InputMismatchException e){
+                cls();
+                System.out.println("You must enter a valid option number!");
+                scanner.reset();  scanner.nextLine();
+        }
 
         addFoodtoStore(aux);
 
@@ -231,27 +253,35 @@ public class TakeAway {
 
         WithoutMeat aux = new WithoutMeat();
 
-        System.out.println("Name: ");
-        aux.setName(scanner.nextLine());
-        scanner.reset();
+        try{
+            System.out.println("Name: ");
+            aux.setName(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Input price: ");
-        aux.setPrice(scanner.nextFloat());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Input price: ");
+            aux.setPrice(scanner.nextFloat());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Description: ");
-        aux.setDescription(scanner.nextLine());
-        scanner.reset();
+            System.out.println("Description: ");
+            aux.setDescription(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Number of people recommended per dish: ");
-        aux.setNumberPeopleRecommended(scanner.nextInt());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Number of people recommended per dish: ");
+            aux.setNumberPeopleRecommended(scanner.nextInt());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Preparation: ");
-        aux.setPreparation(scanner.nextLine());
-        scanner.reset();
+            System.out.println("Preparation: ");
+            aux.setPreparation(scanner.nextLine());
+            scanner.reset();
+
+        }
+        catch(InputMismatchException e){
+                cls();
+                System.out.println("You must enter a valid option number!");
+                scanner.reset();  scanner.nextLine();
+        }
 
         addFoodtoStore(aux);
 
@@ -263,7 +293,7 @@ public class TakeAway {
 
         Alcoholic aux = new Alcoholic();
 
-        try {
+        try{
             scanner.reset();
             System.out.println("Brand: ");
             aux.setBrand(scanner.nextLine());
@@ -373,81 +403,89 @@ public class TakeAway {
 
         NonAlcoholic aux = new NonAlcoholic();
 
-        scanner.reset();
-        System.out.println("Brand: ");
-        aux.setBrand(scanner.nextLine());
-        scanner.reset();
+        try{
+            scanner.reset();
+            System.out.println("Brand: ");
+            aux.setBrand(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("In stock: ");
-        aux.setStock(scanner.nextInt());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("In stock: ");
+            aux.setStock(scanner.nextInt());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Price: ");
-        aux.setPrice(scanner.nextFloat());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Price: ");
+            aux.setPrice(scanner.nextFloat());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Size: ");
-        aux.setSize(scanner.nextFloat());
-        scanner.nextLine();
-        scanner.reset();
+            System.out.println("Size: ");
+            aux.setSize(scanner.nextFloat());
+            scanner.nextLine();
+            scanner.reset();
 
-        System.out.println("Type of bottling: ");
-        aux.setBottling(scanner.nextLine());
-        scanner.reset();
+            System.out.println("Type of bottling: ");
+            aux.setBottling(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Contain fizz?:\n1.True \n2.False");
-        scanner.reset();
-        int optionFizz;
-        do {
-            optionFizz = scanner.nextInt();
-            switch (optionFizz) {
-                case 1:
-                    aux.setFizz(true);
-                    break;
-                case 2:
-                    aux.setFizz(false);
-                    break;
+            System.out.println("Contain fizz?:\n1.True \n2.False");
+            scanner.reset();
+            int optionFizz;
+            do {
+                optionFizz = scanner.nextInt();
+                switch (optionFizz) {
+                    case 1:
+                        aux.setFizz(true);
+                        break;
+                    case 2:
+                        aux.setFizz(false);
+                        break;
 
-                default:
-                    System.out.println("Invalid input. Insert a correct input.");
-                    break;
-            }
-        } while (optionFizz < 1 || optionFizz > 2);
+                    default:
+                        System.out.println("Invalid input. Insert a correct input.");
+                        break;
+                }
+            } while (optionFizz < 1 || optionFizz > 2);
 
-        scanner.reset(); scanner.nextLine();
-        System.out.println("Flavor: ");
-        aux.setFlavor(scanner.nextLine());
-        scanner.reset();
+            scanner.reset();
+            scanner.nextLine();
+            System.out.println("Flavor: ");
+            aux.setFlavor(scanner.nextLine());
+            scanner.reset();
 
-        System.out.println("Type of drink:\n1.Water\n2.Juice\n3.Soda\n4.Flavored Water\n5.Other");
-        scanner.reset();
-        int typeAlcoholic;
-        do {
-            typeAlcoholic = scanner.nextInt();
-            switch (typeAlcoholic) {
-                case 1:
-                    aux.setType(typeNonAlcoholic.Water);
-                    break;
-                case 2:
-                    aux.setType(typeNonAlcoholic.Juice);
-                    break;
-                case 3:
-                    aux.setType(typeNonAlcoholic.Soda);
-                    break;
-                case 4:
-                    aux.setType(typeNonAlcoholic.Flavored_Water);
-                    break;
-                case 5:
-                    aux.setType(products.drinks.typeNonAlcoholic.Other);
-                    break;
-                default:
-                    System.out.println("Invalid input. Insert a correct input.");
-                    break;
-            }
-        } while (typeAlcoholic < 1 || typeAlcoholic > 5);
+            System.out.println("Type of drink:\n1.Water\n2.Juice\n3.Soda\n4.Flavored Water\n5.Other");
+            scanner.reset();
+            int typeAlcoholic;
+            do {
+                typeAlcoholic = scanner.nextInt();
+                switch (typeAlcoholic) {
+                    case 1:
+                        aux.setType(typeNonAlcoholic.Water);
+                        break;
+                    case 2:
+                        aux.setType(typeNonAlcoholic.Juice);
+                        break;
+                    case 3:
+                        aux.setType(typeNonAlcoholic.Soda);
+                        break;
+                    case 4:
+                        aux.setType(typeNonAlcoholic.Flavored_Water);
+                        break;
+                    case 5:
+                        aux.setType(products.drinks.typeNonAlcoholic.Other);
+                        break;
+                    default:
+                        System.out.println("Invalid input. Insert a correct input.");
+                        break;
+                }
+            } while (typeAlcoholic < 1 || typeAlcoholic > 5);
 
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
         scanner.reset(); scanner.nextLine();
         for (Drink eachDrink : drinks) {
             if (eachDrink.equals(aux)) {
@@ -502,20 +540,27 @@ public class TakeAway {
                     do {
                         displayAllFood(true);
 
-                        System.out.println("\nChoose the food writing the ID: ");
-                        auxID = scanner.nextInt();
-                        scanner.reset();
+                        try {
+                            System.out.println("\nChoose the food writing the ID: ");
+                            auxID = scanner.nextInt();
+                            scanner.reset();
 
-                        System.out.println("\nHow many units of this dish you want?: ");
-                        auxAmount = scanner.nextInt();
-                        scanner.reset();
+                            System.out.println("\nHow many units of this dish you want?: ");
+                            auxAmount = scanner.nextInt();
+                            scanner.reset();
 
-                        if(searchFoodbyID(auxID).isActive() == true)
-                        auxCart.addToCart(searchFoodbyID(auxID), auxAmount);
-                        else
-                            System.out.println("\nFood not available!");
+                            if (searchFoodbyID(auxID).isActive() == true)
+                                auxCart.addToCart(searchFoodbyID(auxID), auxAmount);
+                            else
+                                System.out.println("\nFood not available!");
 
-                        System.out.println(auxCart);
+                            System.out.println(auxCart);
+                        }
+                        catch(InputMismatchException e){
+                            cls();
+                            System.out.println("You must enter a valid option number!");
+                            scanner.reset();  scanner.nextLine();
+                        }
 
                         do {
                             System.out.println("\nAdd more food? Input 1:yes | 2:no");
@@ -530,18 +575,25 @@ public class TakeAway {
                     do {
                         displayAllDrinks();
 
-                        System.out.println("\nChoose the drink writing the ID: ");
-                        auxID = scanner.nextInt();
-                        scanner.reset();
+                        try {
+                            System.out.println("\nChoose the drink writing the ID: ");
+                            auxID = scanner.nextInt();
+                            scanner.reset();
 
-                        System.out.println("\nHow many units of this drink you want?: ");
-                        auxAmount = scanner.nextInt();
-                        scanner.reset();
+                            System.out.println("\nHow many units of this drink you want?: ");
+                            auxAmount = scanner.nextInt();
+                            scanner.reset();
 
-                        cls();
-                        auxCart.addToCart(searchDrinkbyID(auxID), auxAmount);
+                            cls();
+                            auxCart.addToCart(searchDrinkbyID(auxID), auxAmount);
 
-                        System.out.println(auxCart);
+                            System.out.println(auxCart);
+                        }
+                        catch(InputMismatchException e){
+                            cls();
+                            System.out.println("You must enter a valid option number!");
+                            scanner.reset();  scanner.nextLine();
+                        }
 
                         do {
                             System.out.println("\nAdd more drink? Input 1:yes | 2:no");

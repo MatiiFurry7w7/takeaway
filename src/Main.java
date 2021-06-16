@@ -4,6 +4,7 @@ import persons.clients.Client;
 import persons.clients.Order;
 import persons.employees.Employee;
 import persons.employees.typeEmployeeArea;
+import products.Product;
 import products.drinks.*;
 import products.food.Food;
 import products.food.WithMeat;
@@ -541,6 +542,13 @@ public class Main {
                                                 option.reset();
                                                 subOp = option.nextInt();
                                                 option.reset();
+
+                                                if(subOp == 1){
+                                                    elCirculo.makeFoodWithMeat();
+                                                }
+                                                if(subOp == 2){
+                                                    elCirculo.makeFoodWithoutMeat();
+                                                }
                                             }
                                             catch(InputMismatchException e){
                                                 cls();
@@ -551,12 +559,6 @@ public class Main {
 
                                             cls();
 
-                                            if(subOp == 1){
-                                                elCirculo.makeFoodWithMeat();
-                                            }
-                                            if(subOp == 2){
-                                                elCirculo.makeFoodWithoutMeat();
-                                            }
                                             option.reset();
                                             break;
                                             //endregion
@@ -687,13 +689,35 @@ public class Main {
                                             break;
                                         //endregion
                                     }
-                                    option.reset();
+                                    option.reset();option.nextLine();
                                     cls();
                                 }
                                 break;
                                 //endregion
+                            case 3:     //region Premium Prices Menu
+                                subOp = 0;
+                                System.out.println("Drink menu!: ");
+                                for (Drink eachDrink: elCirculo.getDrinks()) {
+                                    if(eachDrink instanceof NonAlcoholic){
+                                        System.out.println(eachDrink);
+                                        System.out.println("----------------------\nPrice with Premium Discount!: $" + ((NonAlcoholic) eachDrink).priceWithDiscount());
+                                    }
+                                }
+                                System.out.println("\nFood menu!: ");
+                                for (Food eachFood: elCirculo.getFoods()) {
+                                    if(eachFood instanceof WithoutMeat){
+                                        System.out.println(eachFood);
+                                        System.out.println("\n----------------------\nPrice with Premium Discount!: $" + ((WithoutMeat) eachFood).priceWithDiscount());
+                                    }
+                                }
+
+                                pressEnterKeyToContinue();
+                                option.reset(); option.nextLine();
+                                cls();
+                                break;
+                                //endregion
                         }
-                        option.reset();
+                        option.reset(); option.nextLine();
                         cls();
                     }
                     break;
@@ -802,7 +826,7 @@ public class Main {
                                 break;
                             //endregion
                         }
-                        option.reset();
+                        option.reset();option.nextLine();
                         cls();
                     }
                     break;
@@ -864,6 +888,7 @@ public class Main {
                 "\nProducts management" +
                         "\n\n1_ Drinks" +
                         "\n2_ Food" +
+                        "\n3_ Premium Prices Menu" +
                         "\n\n9_ Go Back");
 
     }

@@ -82,10 +82,10 @@ public abstract class Person implements Serializable {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
+        int result = 0;
 
-        result = prime + result * Integer.valueOf(this.getPhone());
-        result = prime + result * Integer.valueOf(this.getEmail());
+        result = result + prime * Integer.valueOf(this.getPhone());
+        result = result + prime * Integer.valueOf(this.getEmail());
         return result;
     }
 

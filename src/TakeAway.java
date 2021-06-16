@@ -627,7 +627,7 @@ public class TakeAway {
         }
     }
 
-    public void addOrderToStore(Order order) {
+    public void addOrderToStore(Order order){
         if (order != null) {
             orders.add(order);
         }

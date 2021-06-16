@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart implements Serializable{
+    private static final long serialVersionUID = 8799656478674716638L;
+
     private List<Drink> drinkCart = new ArrayList<>();
     private List<Integer> drinkAmount = new ArrayList<>();
     private List<Food> foodCart = new ArrayList<>();

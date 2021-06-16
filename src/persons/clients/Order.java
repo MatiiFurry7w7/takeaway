@@ -6,9 +6,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Order implements Serializable {
-    private static int localID = 1;
+    private static final long serialVersionUID = 8799656478674716638L;
 
+    private static int localID = 1;
     private int id;
+
     private Client client;
     private Cart cart;
     private LocalDate date;

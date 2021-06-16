@@ -763,7 +763,6 @@ public class Main {
                                 } catch(InputMismatchException e){
                                     cls();
                                     System.out.println("You must enter a valid option number!");
-                                    pressEnterKeyToContinue();
                                     option.reset();
                                 }
 

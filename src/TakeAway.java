@@ -94,12 +94,6 @@ public class TakeAway {
         aux.setAddress(scanner.next());
         scanner.reset();
         scanner.nextLine();
-    }
-        catch(InputMismatchException e){
-            cls();
-            System.out.println("You must enter a valid option number!");
-            scanner.reset();  scanner.nextLine();
-        }
 
         for (Person eachClient : persons) {
             if (eachClient.equals(aux)) {
@@ -109,6 +103,12 @@ public class TakeAway {
         }
 
         addPersonToStore(aux);
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
 
         return aux;
     }
@@ -163,12 +163,7 @@ public class TakeAway {
                     break;
             }
         } while (a < 1 || a > 5);
-        }
-        catch(InputMismatchException e){
-            cls();
-            System.out.println("You must enter a valid option number!");
-            scanner.reset();  scanner.nextLine();
-        }
+
 
         for (Person eachEmployee : persons) {
             if (eachEmployee.equals(aux)) {
@@ -178,6 +173,12 @@ public class TakeAway {
         }
 
         addPersonToStore(aux);
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
 
         return aux;
     }
@@ -235,14 +236,14 @@ public class TakeAway {
             } while (a < 1 || a > 6);
             scanner.reset();
             scanner.nextLine();
-        }
-        catch(InputMismatchException e){
-                cls();
-                System.out.println("You must enter a valid option number!");
-                scanner.reset();  scanner.nextLine();
-        }
 
         addFoodtoStore(aux);
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
 
         return aux;
     }
@@ -276,14 +277,13 @@ public class TakeAway {
             aux.setPreparation(scanner.nextLine());
             scanner.reset();
 
+        addFoodtoStore(aux);
         }
         catch(InputMismatchException e){
-                cls();
-                System.out.println("You must enter a valid option number!");
-                scanner.reset();  scanner.nextLine();
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
         }
-
-        addFoodtoStore(aux);
 
         return aux;
     }
@@ -392,7 +392,9 @@ public class TakeAway {
             addDrinkToStore(aux);
         }
         catch(InputMismatchException e){
-            System.out.println("You have input an invalid value!");
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
         }
         return aux;
     }
@@ -480,12 +482,7 @@ public class TakeAway {
                 }
             } while (typeAlcoholic < 1 || typeAlcoholic > 5);
 
-        }
-        catch(InputMismatchException e){
-            cls();
-            System.out.println("You must enter a valid option number!");
-            scanner.reset();  scanner.nextLine();
-        }
+
         scanner.reset(); scanner.nextLine();
         for (Drink eachDrink : drinks) {
             if (eachDrink.equals(aux)) {
@@ -495,6 +492,12 @@ public class TakeAway {
         }
 
         addDrinkToStore(aux);
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset();  scanner.nextLine();
+        }
 
         return aux;
     }

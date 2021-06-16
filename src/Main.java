@@ -820,7 +820,6 @@ public class Main {
         System.out.println("\n\n\n\t\t\t\t< -- See you later! :) -- >\n\n\n" +
                            "----------------------------------------------------------------------------------");
         //endregion
-
     }
 
     //region Menu

@@ -1096,6 +1096,8 @@ public class TakeAway {
                 aux = objInputStream.readObject();
             }
 
+            System.out.println("Successfully loaded orders Data from File!...");
+
         }
         catch (IOException e){
             if(e.getMessage() != null)
@@ -1103,9 +1105,6 @@ public class TakeAway {
         }
         catch (Exception e){
             System.out.println("An error has occurred!");
-        }
-        finally {
-            System.out.println("Successfully loaded orders Data from File!...");
         }
     }
 

@@ -76,7 +76,7 @@ public class Cart implements Serializable{
             }
         }
         else
-            System.out.println("The product doesnt exist!");
+            System.out.println("The product doesn't exist!");
     }
 
     public float calculateTotal(){

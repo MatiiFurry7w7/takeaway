@@ -494,6 +494,9 @@ public class Main {
                                                     option.reset();
                                                     subOp = option.nextInt();
                                                     option.reset();
+
+                                                    auxC.setStock(auxC.getStock() + subOp);
+                                                    System.out.println("\nStock Added!\nIn Stock: " + auxC.getStock());
                                                 }
                                                 catch(InputMismatchException e){
                                                     cls();
@@ -502,14 +505,13 @@ public class Main {
                                                     option.reset();
                                                 }
 
-                                                auxC.setStock(auxC.getStock() + subOp);
-                                                System.out.println("\nStock Added!\nIn Stock: " + auxC.getStock());
+
                                             }
                                             pressEnterKeyToContinue();
                                             break;
                                             //endregion
                                     }
-                                    option.reset();
+                                    option.reset(); option.nextLine();
                                     cls();
                                 }
                                 break;
@@ -716,9 +718,9 @@ public class Main {
                                 cls();
                                 break;
                                 //endregion
+
                         }
-                        option.reset(); option.nextLine();
-                        cls();
+                        option.reset();
                     }
                     break;
                     //endregion
@@ -751,10 +753,18 @@ public class Main {
                                 //endregion
                             case 2:                //region Search Order
                                 System.out.println("Input the Order ID to search for it: ");
-                                Order aux = elCirculo.searchOrderbyOrderID(option.nextInt());
 
-                                if(aux != null){
-                                    System.out.println(aux);
+                                try{
+                                    Order aux = elCirculo.searchOrderbyOrderID(option.nextInt());
+
+                                    if(aux != null){
+                                        System.out.println(aux);
+                                    }
+                                } catch(InputMismatchException e){
+                                    cls();
+                                    System.out.println("You must enter a valid option number!");
+                                    pressEnterKeyToContinue();
+                                    option.reset();
                                 }
 
                                 pressEnterKeyToContinue();

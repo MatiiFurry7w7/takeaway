@@ -134,7 +134,7 @@ public class Main {
 
         //endregion
 
-        //region         < -- MAIN PROGRAM MENU -- >
+        //region MAIN PROGRAM MENU
 
         //Load data from disk
         System.out.println("\033[1;92m"); //Green text
@@ -947,6 +947,8 @@ public class Main {
                         "\n\n9_ Go Back");
     }
 
+    //endregion
+
     private static void pressEnterKeyToContinue(){
         System.out.println("\nPress Enter key to continue...");
         try
@@ -956,7 +958,6 @@ public class Main {
         catch(Exception e)
         {}
     }
-    //endregion
 
     public static void cls()
     {

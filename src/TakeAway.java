@@ -853,6 +853,7 @@ public class TakeAway {
         int op = 0;
         System.out.println("\nWhat do you want to edit? 1. Name 2. Phone 3. Email 4. Address");
         scanner.reset();
+        try{
         do {
             op = scanner.nextInt(); scanner.reset(); scanner.nextLine();
             switch (op) {
@@ -881,6 +882,12 @@ public class TakeAway {
                     System.out.println("Insert a valid number!");
             }
         } while (op < 1 || op > 4);
+        }
+        catch(InputMismatchException e){
+            cls();
+            System.out.println("You must enter a valid option number!");
+            scanner.reset(); scanner.nextLine();
+        }
     }
     public void editEmployee(Employee aux) {
         int op = 0;
